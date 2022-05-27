@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DesignSurface">
+    <option name="filePathToZoomLevelMap">
+      <map>
+        <entry key="app/src/main/res/drawable/half_round_bg.xml" value="0.222" />
+        <entry key="app/src/main/res/drawable/outlined_bg.xml" value="0.222" />
+        <entry key="app/src/main/res/drawable/round_bg.xml" value="0.222" />
+        <entry key="app/src/main/res/layout/activity_add_item.xml" value="0.22056159420289856" />
+        <entry key="app/src/main/res/layout/activity_closet.xml" value="0.2570850317028985" />
+        <entry key="app/src/main/res/layout/activity_clothing_item.xml" value="0.22056159420289856" />
+        <entry key="app/src/main/res/layout/activity_clothing_type.xml" value="0.22056159420289856" />
+        <entry key="app/src/main/res/layout/activity_main.xml" value="0.22056159420289856" />
+        <entry key="app/src/main/res/layout/activity_mannequin.xml" value="0.22056159420289856" />
+        <entry key="app/src/main/res/layout/activity_sign_in.xml" value="0.30933570308961733" />
+        <entry key="app/src/main/res/layout/activity_sign_up.xml" value="0.2967472021130549" />
+        <entry key="app/src/main/res/layout/activity_washing.xml" value="0.22056159420289856" />
+        <entry key="app/src/main/res/layout/clothing_items.xml" value="0.3801528930664063" />
+        <entry key="app/src/main/res/layout/washing_items.xml" value="0.42739905758180485" />
+      </map>
+    </option>
+  </component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="Android Studio default JDK" project-jdk-type="JavaSDK">
+    <output url="file://$PROJECT_DIR$/build/classes" />
+  </component>
+  <component name="ProjectType">
+    <option name="id" value="Android" />
+  </component>
+</project>

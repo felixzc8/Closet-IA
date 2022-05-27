@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "274834834316",
+    "project_id": "ia-closet",
+    "storage_bucket": "ia-closet.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:274834834316:android:88860729195aa24b324ca9",
+        "android_client_info": {
+          "package_name": "com.example.closet_ia"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "274834834316-ej6v72ebj0osc09mb6jsc4d26pot55c9.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAvvGzBHA_zwO5GsBbxEwP25ikXhF7sX9s"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "274834834316-ej6v72ebj0osc09mb6jsc4d26pot55c9.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
