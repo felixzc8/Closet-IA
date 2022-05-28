@@ -22,9 +22,10 @@ public class ClothingTypeActivity extends AppCompatActivity
 {
     User user;
     String type;
-    private ArrayList<ClothingItem> clothingItems;
-    private RecyclerView CTRecyclerView;
-    private CTRecyclerAdapter.RecyclerViewClickListener listener;
+    ArrayList<ClothingItem> clothingItems;
+    ArrayList<ClothingItem> typeItems;
+    RecyclerView CTRecyclerView;
+    CTRecyclerAdapter.RecyclerViewClickListener listener;
 
     TextView clothingType;
 
@@ -35,6 +36,7 @@ public class ClothingTypeActivity extends AppCompatActivity
         setContentView(R.layout.activity_clothing_type);
 
         clothingItems = new ArrayList<>();
+        typeItems = new ArrayList<>();
         CTRecyclerView = findViewById(R.id.CTRecyclerView);
 
         Intent intent = getIntent();
@@ -44,16 +46,26 @@ public class ClothingTypeActivity extends AppCompatActivity
         clothingType = findViewById(R.id.clothingTypeTextView);
         clothingType.setText(type);
 
-        setClothingItems();
+        setItems();
         setAdapter();
     }
 
-    public void setClothingItems()
+    public void setItems()
     {
-        ClothingItem a = new ClothingItem(UUID.randomUUID().toString(), "shirt", "bobbus", 123456, "03/04/1999");
-        ClothingItem b = new ClothingItem(UUID.randomUUID().toString(), "pants", "joshua", Color.YELLOW, "11/10/2004");
-        clothingItems.add(a);
-        clothingItems.add(b);
+        clothingItems = user.getClothingItems();
+
+        for (ClothingItem item : clothingItems)
+        {
+            if (item.getType().equals(type))
+            {
+                typeItems.add(item);
+            }
+        }
+
+//        ClothingItem a = new ClothingItem(UUID.randomUUID().toString(), "shirt", "bobbus", 123456, "03/04/1999");
+//        ClothingItem b = new ClothingItem(UUID.randomUUID().toString(), "pants", "joshua", Color.YELLOW, "11/10/2004");
+//        clothingItems.add(a);
+//        clothingItems.add(b);
     }
 
     public void setOnClickListener()
@@ -64,7 +76,7 @@ public class ClothingTypeActivity extends AppCompatActivity
             public void onClick(View v, int position)
             {
                 Intent intent = new Intent(getApplicationContext(), ClothingItemActivity.class);
-                intent.putExtra("clothing item", clothingItems.get(position));
+                intent.putExtra("item", typeItems.get(position));
                 intent.putExtra("user", user);
                 intent.putExtra("type", type);
                 startActivity(intent);
@@ -75,7 +87,7 @@ public class ClothingTypeActivity extends AppCompatActivity
     public void setAdapter()
     {
         setOnClickListener();
-        CTRecyclerAdapter adapter = new CTRecyclerAdapter(clothingItems, listener);
+        CTRecyclerAdapter adapter = new CTRecyclerAdapter(typeItems, listener);
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getApplicationContext());
         CTRecyclerView.setLayoutManager(layoutManager);
         CTRecyclerView.setItemAnimator(new DefaultItemAnimator());

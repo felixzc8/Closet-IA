@@ -184,6 +184,7 @@ public class AddItemActivity extends AppCompatActivity
                     {
                         Toast.makeText(AddItemActivity.this, "item added", Toast.LENGTH_SHORT).show();
                     });
+            goClothingTypeActivity(v);
         }
         else
         {
@@ -194,6 +195,7 @@ public class AddItemActivity extends AppCompatActivity
     public void goClothingTypeActivity(View v)
     {
         Intent intent = new Intent(this, ClothingTypeActivity.class);
+        intent.putExtra("user", user);
         intent.putExtra("type", type);
         startActivity(intent);
     }
