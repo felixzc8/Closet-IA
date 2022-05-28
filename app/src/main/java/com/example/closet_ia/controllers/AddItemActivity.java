@@ -37,9 +37,10 @@ public class AddItemActivity extends AppCompatActivity
     //    TextView datePurchasedTextView;
     EditText nameInputEditText, datePurchasedEditText;
 
-    String chosenDate;
+    String chosenDate = "";
     String type;
     int chosenColor;
+    boolean choseColor = false;
 
 
     DatePickerDialog.OnDateSetListener setListener;
@@ -62,7 +63,6 @@ public class AddItemActivity extends AppCompatActivity
 //        datePurchasedTextView = findViewById(R.id.datePurchasedTextView);
         datePurchasedEditText = findViewById(R.id.datePurchasedEditText);
         choosePurchaseDate();
-
 
         colorButton = findViewById(R.id.colorButton);
         colorButton.setOnClickListener(new View.OnClickListener()
@@ -145,8 +145,10 @@ public class AddItemActivity extends AppCompatActivity
             {
                 System.out.println(color);
                 chosenColor = color;
+                choseColor = true;
                 colorButton.setBackgroundDrawable(getResources().getDrawable(R.drawable.round_bg));
-                colorButton.setBackgroundColor(getResources().getColor(R.color.teal));
+                colorButton.setBackgroundColor(color);
+//                colorButton.setTextColor(color);
             }
         });
         colorPicker.show();
@@ -167,19 +169,26 @@ public class AddItemActivity extends AppCompatActivity
 
     public void addItem(View v)
     {
+
         String ID = UUID.randomUUID().toString();
         String name = nameInputEditText.getText().toString();
 
-        ClothingItem item = new ClothingItem(ID, type, name, chosenColor, chosenDate);
-        user.addItem(item);
+        if (!ID.equals("") && !name.equals("") && choseColor)
+        {
+            ClothingItem item = new ClothingItem(ID, type, name, chosenColor, chosenDate);
+            user.addItem(item);
 
-        firestore.collection("users")
-                .document(user.getID())
-                .set(user).addOnCompleteListener(task ->
-                {
-                    Toast.makeText(AddItemActivity.this, "item added", Toast.LENGTH_SHORT).show();
-                });
-
+            firestore.collection("users")
+                    .document(user.getID())
+                    .set(user).addOnCompleteListener(task ->
+                    {
+                        Toast.makeText(AddItemActivity.this, "item added", Toast.LENGTH_SHORT).show();
+                    });
+        }
+        else
+        {
+            Toast.makeText(this, "please fill in all fields", Toast.LENGTH_SHORT).show();
+        }
     }
 
     public void goClothingTypeActivity(View v)

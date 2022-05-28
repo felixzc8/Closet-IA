@@ -17,29 +17,38 @@ import java.util.ArrayList;
 public class WashRecyclerAdapter extends RecyclerView.Adapter<WashRecyclerAdapter.WashViewHolder>
 {
     private ArrayList<ClothingItem> clothingItems;
+    private RecyclerViewClickListener listener;
 
-    public WashRecyclerAdapter(ArrayList<ClothingItem> clothingItems)
+    public WashRecyclerAdapter(ArrayList<ClothingItem> clothingItems, RecyclerViewClickListener listener)
     {
         this.clothingItems = clothingItems;
+        this.listener = listener;
     }
 
-    public class WashViewHolder extends RecyclerView.ViewHolder
+    public class WashViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener
     {
-        private TextView nameTextView, lastUsedTextView;
+        private TextView washNameTextView, lastUsedTextView;
         private ImageView colorImageView;
 
-        public WashViewHolder(final View view)
+        public WashViewHolder(final View v)
         {
-            super(view);
+            super(v);
+            washNameTextView = v.findViewById(R.id.washNameTextView);
 
+            v.setOnClickListener(this);
         }
 
+        @Override
+        public void onClick(View view)
+        {
+            listener.onClick(view, getAdapterPosition());
+        }
     }
     @NonNull
     @Override
     public WashRecyclerAdapter.WashViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType)
     {
-        View itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.clothing_items, parent, false);
+        View itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.washing_items, parent, false);
         return new WashRecyclerAdapter.WashViewHolder(itemView);
     }
 
@@ -47,12 +56,17 @@ public class WashRecyclerAdapter extends RecyclerView.Adapter<WashRecyclerAdapte
     public void onBindViewHolder(@NonNull WashRecyclerAdapter.WashViewHolder holder, int position)
     {
         String name = clothingItems.get(position).getName();
-        holder.nameTextView.setText(name);
+        holder.washNameTextView.setText(name);
     }
 
     @Override
     public int getItemCount()
     {
         return clothingItems.size();
+    }
+
+    public interface RecyclerViewClickListener
+    {
+        void onClick(View v, int position);
     }
 }

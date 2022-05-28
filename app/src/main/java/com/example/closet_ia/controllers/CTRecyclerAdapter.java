@@ -17,13 +17,15 @@ import java.util.ArrayList;
 public class CTRecyclerAdapter extends RecyclerView.Adapter<CTRecyclerAdapter.CTViewHolder>
 {
     private ArrayList<ClothingItem>  clothingItems;
+    private RecyclerViewClickListener listener;
 
-    public CTRecyclerAdapter(ArrayList<ClothingItem> clothingItems)
+    public CTRecyclerAdapter(ArrayList<ClothingItem> clothingItems, RecyclerViewClickListener listener)
     {
         this.clothingItems = clothingItems;
+        this.listener = listener;
     }
 
-    public class CTViewHolder extends RecyclerView.ViewHolder
+    public class CTViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener
     {
         private TextView nameTextView, lastUsedTextView;
         private ImageView  colorImageView;
@@ -34,8 +36,17 @@ public class CTRecyclerAdapter extends RecyclerView.Adapter<CTRecyclerAdapter.CT
             nameTextView = v.findViewById(R.id.nameTextView);
             lastUsedTextView = v.findViewById(R.id.lastUsedTextView);
             colorImageView = v.findViewById(R.id.colorImageView);
+
+            v.setOnClickListener(this);
+        }
+
+        @Override
+        public void onClick(View view)
+        {
+            listener.onClick(view, getAdapterPosition());
         }
     }
+
     @NonNull
     @Override
     public CTRecyclerAdapter.CTViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType)
@@ -55,5 +66,10 @@ public class CTRecyclerAdapter extends RecyclerView.Adapter<CTRecyclerAdapter.CT
     public int getItemCount()
     {
         return clothingItems.size();
+    }
+
+    public interface RecyclerViewClickListener
+    {
+        void onClick(View v, int position);
     }
 }

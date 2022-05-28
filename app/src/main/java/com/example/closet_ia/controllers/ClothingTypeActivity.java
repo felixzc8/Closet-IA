@@ -6,6 +6,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
@@ -22,7 +23,8 @@ public class ClothingTypeActivity extends AppCompatActivity
     User user;
     String type;
     private ArrayList<ClothingItem> clothingItems;
-    private RecyclerView recyclerView;
+    private RecyclerView CTRecyclerView;
+    private CTRecyclerAdapter.RecyclerViewClickListener listener;
 
     TextView clothingType;
 
@@ -33,7 +35,7 @@ public class ClothingTypeActivity extends AppCompatActivity
         setContentView(R.layout.activity_clothing_type);
 
         clothingItems = new ArrayList<>();
-        recyclerView = findViewById(R.id.CTRecyclerView);
+        CTRecyclerView = findViewById(R.id.CTRecyclerView);
 
         Intent intent = getIntent();
         type = intent.getStringExtra("type");
@@ -49,16 +51,35 @@ public class ClothingTypeActivity extends AppCompatActivity
     public void setClothingItems()
     {
         ClothingItem a = new ClothingItem(UUID.randomUUID().toString(), "shirt", "bobbus", 123456, "03/04/1999");
+        ClothingItem b = new ClothingItem(UUID.randomUUID().toString(), "pants", "joshua", Color.YELLOW, "11/10/2004");
         clothingItems.add(a);
+        clothingItems.add(b);
+    }
+
+    public void setOnClickListener()
+    {
+        listener = new CTRecyclerAdapter.RecyclerViewClickListener()
+        {
+            @Override
+            public void onClick(View v, int position)
+            {
+                Intent intent = new Intent(getApplicationContext(), ClothingItemActivity.class);
+                intent.putExtra("clothing item", clothingItems.get(position));
+                intent.putExtra("user", user);
+                intent.putExtra("type", type);
+                startActivity(intent);
+            }
+        };
     }
 
     public void setAdapter()
     {
-        CTRecyclerAdapter adapter = new CTRecyclerAdapter(clothingItems);
+        setOnClickListener();
+        CTRecyclerAdapter adapter = new CTRecyclerAdapter(clothingItems, listener);
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getApplicationContext());
-        recyclerView.setLayoutManager(layoutManager);
-        recyclerView.setItemAnimator(new DefaultItemAnimator());
-        recyclerView.setAdapter(adapter);
+        CTRecyclerView.setLayoutManager(layoutManager);
+        CTRecyclerView.setItemAnimator(new DefaultItemAnimator());
+        CTRecyclerView.setAdapter(adapter);
     }
 
     public void goClosetActivity(View v)
