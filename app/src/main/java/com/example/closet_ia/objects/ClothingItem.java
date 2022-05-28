@@ -11,6 +11,7 @@ public class ClothingItem implements Serializable
     private String lastUsed;
     private String datePurchased;
     private int timesWashed;
+    private boolean inWash;
 
 
     public ClothingItem()
@@ -96,5 +97,15 @@ public class ClothingItem implements Serializable
     public void setDatePurchased(String datePurchased)
     {
         this.datePurchased = datePurchased;
+    }
+
+    public boolean isInWash()
+    {
+        return inWash;
+    }
+
+    public void setInWash(boolean inWash)
+    {
+        this.inWash = inWash;
     }
 }

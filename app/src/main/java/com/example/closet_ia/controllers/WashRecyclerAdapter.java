@@ -1,5 +1,6 @@
 package com.example.closet_ia.controllers;
 
+import android.content.res.ColorStateList;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -7,6 +8,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.core.widget.ImageViewCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.closet_ia.R;
@@ -18,6 +20,7 @@ public class WashRecyclerAdapter extends RecyclerView.Adapter<WashRecyclerAdapte
 {
     private ArrayList<ClothingItem> clothingItems;
     private RecyclerViewClickListener listener;
+    private ClothingItem item;
 
     public WashRecyclerAdapter(ArrayList<ClothingItem> clothingItems, RecyclerViewClickListener listener)
     {
@@ -27,13 +30,15 @@ public class WashRecyclerAdapter extends RecyclerView.Adapter<WashRecyclerAdapte
 
     public class WashViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener
     {
-        private TextView washNameTextView, lastUsedTextView;
+        private TextView washNameTextView, timesWashedTextView;
         private ImageView colorImageView;
 
         public WashViewHolder(final View v)
         {
             super(v);
             washNameTextView = v.findViewById(R.id.washNameTextView);
+            timesWashedTextView = v.findViewById(R.id.timesWashedTextView);
+            colorImageView = v.findViewById(R.id.WashColorImageView);
 
             v.setOnClickListener(this);
         }
@@ -55,8 +60,12 @@ public class WashRecyclerAdapter extends RecyclerView.Adapter<WashRecyclerAdapte
     @Override
     public void onBindViewHolder(@NonNull WashRecyclerAdapter.WashViewHolder holder, int position)
     {
-        String name = clothingItems.get(position).getName();
+        item = clothingItems.get(position);
+        String name = item.getName();
+        String timesWashed = String.valueOf(item.getTimesWashed());
         holder.washNameTextView.setText(name);
+        holder.timesWashedTextView.setText(timesWashed);
+        ImageViewCompat.setImageTintList(holder.colorImageView, ColorStateList.valueOf(item.getColor()));
     }
 
     @Override

@@ -1,5 +1,6 @@
 package com.example.closet_ia.controllers;
 
+import android.content.res.ColorStateList;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -7,6 +8,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.core.widget.ImageViewCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.closet_ia.objects.ClothingItem;
@@ -18,6 +20,7 @@ public class CTRecyclerAdapter extends RecyclerView.Adapter<CTRecyclerAdapter.CT
 {
     private ArrayList<ClothingItem>  clothingItems;
     private RecyclerViewClickListener listener;
+    private ClothingItem item;
 
     public CTRecyclerAdapter(ArrayList<ClothingItem> clothingItems, RecyclerViewClickListener listener)
     {
@@ -58,8 +61,12 @@ public class CTRecyclerAdapter extends RecyclerView.Adapter<CTRecyclerAdapter.CT
     @Override
     public void onBindViewHolder(@NonNull CTRecyclerAdapter.CTViewHolder holder, int position)
     {
-        String name = clothingItems.get(position).getName();
+        item = clothingItems.get(position);
+        String name = item.getName();
+        String lastUsed = item.getLastUsed();
         holder.nameTextView.setText(name);
+        holder.lastUsedTextView.setText(lastUsed);
+        ImageViewCompat.setImageTintList(holder.colorImageView, ColorStateList.valueOf(item.getColor()));
     }
 
     @Override

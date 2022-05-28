@@ -23,6 +23,7 @@ public class WashingActivity extends AppCompatActivity
     User user;
 
     ArrayList<ClothingItem> clothingItems;
+    ArrayList<ClothingItem> washingItems;
     RecyclerView washRecyclerView;
     WashRecyclerAdapter.RecyclerViewClickListener listener;
 
@@ -35,7 +36,8 @@ public class WashingActivity extends AppCompatActivity
         Intent intent = getIntent();
         user = (User) intent.getSerializableExtra("user");
 
-        clothingItems = new ArrayList<>();
+        clothingItems = user.getClothingItems();
+        washingItems = new ArrayList<>();
         washRecyclerView = findViewById(R.id.washRecyclerView);
 
         setClothingItems();
@@ -44,10 +46,18 @@ public class WashingActivity extends AppCompatActivity
 
     public void setClothingItems()
     {
-        ClothingItem a = new ClothingItem(UUID.randomUUID().toString(), "shirt", "bobbus", 123456, "03/04/1999");
-        ClothingItem b = new ClothingItem(UUID.randomUUID().toString(), "pants", "joshua", Color.YELLOW, "11/10/2004");
-        clothingItems.add(a);
-        clothingItems.add(b);
+        for (ClothingItem item : clothingItems)
+        {
+            if (item.isInWash())
+            {
+                washingItems.add(item);
+            }
+        }
+
+//        ClothingItem a = new ClothingItem(UUID.randomUUID().toString(), "shirt", "bobbus", 123456, "03/04/1999");
+//        ClothingItem b = new ClothingItem(UUID.randomUUID().toString(), "pants", "joshua", Color.YELLOW, "11/10/2004");
+//        clothingItems.add(a);
+//        clothingItems.add(b);
     }
 
     private void setOnClickListener()
@@ -58,7 +68,7 @@ public class WashingActivity extends AppCompatActivity
             public void onClick(View v, int position)
             {
                 Intent intent = new Intent(getApplicationContext(), ClothingItemActivity.class);
-                intent.putExtra("clothing item", clothingItems.get(position));
+                intent.putExtra("clothing item", washingItems.get(position));
                 intent.putExtra("user", user);
                 startActivity(intent);
             }
@@ -68,7 +78,7 @@ public class WashingActivity extends AppCompatActivity
     public void setAdapter()
     {
         setOnClickListener();
-        WashRecyclerAdapter adapter = new WashRecyclerAdapter(clothingItems, listener);
+        WashRecyclerAdapter adapter = new WashRecyclerAdapter(washingItems, listener);
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getApplicationContext());
         washRecyclerView.setLayoutManager(layoutManager);
         washRecyclerView.setItemAnimator(new DefaultItemAnimator());

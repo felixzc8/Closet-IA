@@ -56,7 +56,7 @@ public class ClothingTypeActivity extends AppCompatActivity
 
         for (ClothingItem item : clothingItems)
         {
-            if (item.getType().equals(type))
+            if (item.getType().equals(type) && !item.isInWash())
             {
                 typeItems.add(item);
             }
@@ -79,6 +79,7 @@ public class ClothingTypeActivity extends AppCompatActivity
                 intent.putExtra("item", typeItems.get(position));
                 intent.putExtra("user", user);
                 intent.putExtra("type", type);
+                intent.putExtra("position", position);
                 startActivity(intent);
             }
         };
