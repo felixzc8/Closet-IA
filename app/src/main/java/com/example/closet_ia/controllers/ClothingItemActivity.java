@@ -6,7 +6,9 @@ import androidx.core.widget.ImageViewCompat;
 
 import android.content.Intent;
 import android.content.res.ColorStateList;
+import android.graphics.Color;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -18,7 +20,11 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.FirebaseFirestore;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.Locale;
 
 public class ClothingItemActivity extends AppCompatActivity
 {
@@ -28,10 +34,11 @@ public class ClothingItemActivity extends AppCompatActivity
     ArrayList<ClothingItem> clothingItems;
     ClothingItem item;
     String type;
+    String origin;
     int position;
 
     TextView itemNameTextView, typeTextView, lastUsedTextView, datePurchasedTextView, timesWashedTextView;
-    ImageView itemColorImageView;
+    ImageView itemColorImageView, washImageView, complementColorImageView;
 
 
     @Override
@@ -45,8 +52,8 @@ public class ClothingItemActivity extends AppCompatActivity
         Intent intent = getIntent();
         user = (User) intent.getSerializableExtra("user");
         item = (ClothingItem) intent.getSerializableExtra("item");
+        origin = intent.getStringExtra("origin");
         clothingItems = user.getClothingItems();
-        position = (int) intent.getIntExtra("position", 0);
 
         type = item.getType();
 
@@ -56,29 +63,139 @@ public class ClothingItemActivity extends AppCompatActivity
         datePurchasedTextView = findViewById(R.id.itemDatePurchasedTextView);
         timesWashedTextView = findViewById(R.id.itemTimesWashedTextView);
         itemColorImageView = findViewById(R.id.itemColorImageView);
+        complementColorImageView = findViewById(R.id.complementColorImageView);
+        washImageView = findViewById(R.id.washImageView);
+
+
+        getPosition();
 
         setDisplay();
+    }
+
+    public void getPosition()
+    {
+        for (int i = 0; i < clothingItems.size(); i++)
+        {
+            if (clothingItems.get(i).getID().equals(item.getID()))
+            {
+                position = i;
+            }
+        }
     }
 
     public void setDisplay()
     {
         itemNameTextView.setText(item.getName());
         typeTextView.setText(type);
-        lastUsedTextView.setText(item.getLastUsed());
-        datePurchasedTextView.setText(item.getDatePurchased());
-        timesWashedTextView.setText(String.valueOf(item.getTimesWashed()));
+        String lastUsed = "Last used: " + item.getLastUsed();
+        lastUsedTextView.setText(lastUsed);
+        String datePurchased = "Date purchased: " + item.getDatePurchased();
+        datePurchasedTextView.setText(datePurchased);
+        String timesWashed = "Times washed: " + item.getTimesWashed();
+        timesWashedTextView.setText(timesWashed);
         ImageViewCompat.setImageTintList(itemColorImageView, ColorStateList.valueOf(item.getColor()));
+
+        if (item.isInWash())
+        {
+            washImageView.setImageResource(R.drawable.laundry);
+        }
+        else
+        {
+            washImageView.setImageResource(R.drawable.washing_machine);
+        }
+
+        ImageViewCompat.setImageTintList(complementColorImageView,
+                ColorStateList.valueOf(findComplementColor(item.getColor())));
+
     }
 
-    public void washItem(View v)
+    public int findComplementColor(int color)
     {
-        item.setInWash(true);
+        int r = Color.red(color);
+        int g = Color.green(color);
+        int b = Color.blue(color);
+
+        System.out.println("red: " + r + " green " + g+ " blue: " + b);
+
+        int cR = 255 - r;
+        int cG = 255 - g;
+        int cB = 255 - b;
+
+        int cRGB = 0xff;
+        cRGB = (cRGB << 8) + cR;
+        cRGB = (cRGB << 8) + cG;
+        cRGB = (cRGB << 8) + cB;
+
+        System.out.println("red: " + cR + " green: " + cG + " blue: " + cB);
+
+        return cRGB;
+    }
+
+    public int findClosestColor(int color, ArrayList<Integer> colors)
+    {
+        Double closestDistance = findDistance(color, colors.get(0));
+        int closestColor = colors.get(0);
+
+        for (int c : colors)
+        {
+            if (findDistance(color, c) < closestDistance)
+            {
+                closestDistance = findDistance(color, c);
+                closestColor = c;
+            }
+        }
+
+        return closestColor;
+    }
+
+    public double findDistance(int color1, int color2)
+    {
+        int r1 = Color.red(color1);
+        int g1 = Color.green(color1);
+        int b1 = Color.blue(color1);
+
+        int r2 = Color.red(color2);
+        int g2 = Color.green(color2);
+        int b2 = Color.blue(color2);
+
+        double distance = Math.sqrt(Math.pow(r1 - r2, 2) + Math.pow(g1 - g2, 2) + Math.pow(b1 - b2, 2));
+
+        return distance;
+    }
+
+    public void takeOutWash()
+    {
+        item.setInWash(false);
         clothingItems.set(position, item);
         user.setClothingItems(clothingItems);
 
+        updateFirestoreClothingItems();
+
+        Intent intent = new Intent(this,  ClothingTypeActivity.class);
+        intent.putExtra("user", user);
+        intent.putExtra("type", type);
+        startActivity(intent);
+    }
+
+    public void putInWash()
+    {
+        item.setInWash(true);
+        item.setTimesWashed(item.getTimesWashed() + 1);
+        clothingItems.set(position, item);
+        user.setClothingItems(clothingItems);
+        updateFirestoreClothingItems();
+
+        Intent intent = new Intent(this, WashingActivity.class);
+        intent.putExtra("user", user);
+        intent.putExtra("type", type);
+        startActivity(intent);
+    }
+
+    public void updateFirestoreClothingItems()
+    {
         firestore.collection("users")
                 .document(user.getID())
-                .update("inWash", true)
+                .update("clothingItems", clothingItems)
                 .addOnCompleteListener(new OnCompleteListener<Void>()
                 {
                     @Override
@@ -86,20 +203,61 @@ public class ClothingItemActivity extends AppCompatActivity
                     {
                         if (task.isSuccessful())
                         {
-
+                            Log.d("CI", "Document successfully updated");
                         }
                         else
                         {
-
+                            Log.w("CI", "Error updating document");
                         }
                     }
                 });
+    }
 
+    public void washIconClicked(View v)
+    {
+        if (item.isInWash())
+        {
+            takeOutWash();
+        }
+        else
+        {
+            putInWash();
+        }
+    }
+
+    public void useItem(View v)
+    {
+        Date d = Calendar.getInstance().getTime();
+        SimpleDateFormat df = new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault());
+        String date = df.format(d);
+        System.out.println(date);
+
+        item.setLastUsed(date);
+        clothingItems.set(position, item);
+        user.setClothingItems(clothingItems);
+        updateFirestoreClothingItems();
+    }
+
+    public void back(View v)
+    {
+        if (origin.equals("ClothingTypeActivity"))
+        {
+            goClothingTypeActivity();
+        }
+        else
+        {
+            goWashingActivity();
+        }
+    }
+
+    public void goWashingActivity()
+    {
         Intent intent = new Intent(this, WashingActivity.class);
         intent.putExtra("user", user);
+        intent.putExtra("type", type);
         startActivity(intent);
     }
-    public void goClothingTypeActivity(View v)
+    public void goClothingTypeActivity()
     {
         Intent intent = new Intent(this, ClothingTypeActivity.class);
         intent.putExtra("user", user);

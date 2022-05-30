@@ -18,13 +18,13 @@ import java.util.ArrayList;
 
 public class WashRecyclerAdapter extends RecyclerView.Adapter<WashRecyclerAdapter.WashViewHolder>
 {
-    private ArrayList<ClothingItem> clothingItems;
+    private ArrayList<ClothingItem> washingItems;
     private RecyclerViewClickListener listener;
     private ClothingItem item;
 
     public WashRecyclerAdapter(ArrayList<ClothingItem> clothingItems, RecyclerViewClickListener listener)
     {
-        this.clothingItems = clothingItems;
+        this.washingItems = clothingItems;
         this.listener = listener;
     }
 
@@ -60,9 +60,9 @@ public class WashRecyclerAdapter extends RecyclerView.Adapter<WashRecyclerAdapte
     @Override
     public void onBindViewHolder(@NonNull WashRecyclerAdapter.WashViewHolder holder, int position)
     {
-        item = clothingItems.get(position);
+        item = washingItems.get(position);
         String name = item.getName();
-        String timesWashed = String.valueOf(item.getTimesWashed());
+        String timesWashed = "times washed: " + item.getTimesWashed();
         holder.washNameTextView.setText(name);
         holder.timesWashedTextView.setText(timesWashed);
         ImageViewCompat.setImageTintList(holder.colorImageView, ColorStateList.valueOf(item.getColor()));
@@ -71,7 +71,7 @@ public class WashRecyclerAdapter extends RecyclerView.Adapter<WashRecyclerAdapte
     @Override
     public int getItemCount()
     {
-        return clothingItems.size();
+        return washingItems.size();
     }
 
     public interface RecyclerViewClickListener

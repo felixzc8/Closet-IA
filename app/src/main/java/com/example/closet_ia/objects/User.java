@@ -22,6 +22,16 @@ public class User implements Serializable
         this.clothingItems = new ArrayList<>();
     }
 
+    @Override
+    public String toString()
+    {
+        return "User{" +
+                "ID='" + ID + '\'' +
+                ", name='" + name + '\'' +
+                ", email='" + email + '\'' +
+                ", clothingItems=" + clothingItems +
+                '}';
+    }
 
     public String getID()
     {

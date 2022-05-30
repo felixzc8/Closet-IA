@@ -9,7 +9,9 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.SearchView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.closet_ia.objects.ClothingItem;
 import com.example.closet_ia.R;
@@ -26,8 +28,10 @@ public class ClothingTypeActivity extends AppCompatActivity
     ArrayList<ClothingItem> typeItems;
     RecyclerView CTRecyclerView;
     CTRecyclerAdapter.RecyclerViewClickListener listener;
+    CTRecyclerAdapter adapter;
 
     TextView clothingType;
+    SearchView searchView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -38,6 +42,8 @@ public class ClothingTypeActivity extends AppCompatActivity
         clothingItems = new ArrayList<>();
         typeItems = new ArrayList<>();
         CTRecyclerView = findViewById(R.id.CTRecyclerView);
+        searchView = findViewById(R.id.CTSearchView);
+        searchView.clearFocus();
 
         Intent intent = getIntent();
         type = intent.getStringExtra("type");
@@ -48,6 +54,7 @@ public class ClothingTypeActivity extends AppCompatActivity
 
         setItems();
         setAdapter();
+        setSearchView();
     }
 
     public void setItems()
@@ -68,6 +75,47 @@ public class ClothingTypeActivity extends AppCompatActivity
 //        clothingItems.add(b);
     }
 
+    public void setSearchView()
+    {
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener()
+        {
+            @Override
+            public boolean onQueryTextSubmit(String s)
+            {
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String s)
+            {
+                filterList(s);
+                return true;
+            }
+        });
+    }
+
+    private void filterList(String s)
+    {
+        ArrayList<ClothingItem> filteredList = new ArrayList<>();
+
+       for (ClothingItem item : typeItems)
+       {
+           if (item.getName().toLowerCase().contains(s.toLowerCase()))
+           {
+               filteredList.add(item);
+           }
+       }
+
+       if (filteredList.isEmpty())
+       {
+           Toast.makeText(this, "not found", Toast.LENGTH_SHORT).show();
+       }
+       else
+       {
+           adapter.setFilteredList(filteredList);
+       }
+    }
+
     public void setOnClickListener()
     {
         listener = new CTRecyclerAdapter.RecyclerViewClickListener()
@@ -79,7 +127,7 @@ public class ClothingTypeActivity extends AppCompatActivity
                 intent.putExtra("item", typeItems.get(position));
                 intent.putExtra("user", user);
                 intent.putExtra("type", type);
-                intent.putExtra("position", position);
+                intent.putExtra("origin", "ClothingTypeActivity");
                 startActivity(intent);
             }
         };
@@ -88,7 +136,7 @@ public class ClothingTypeActivity extends AppCompatActivity
     public void setAdapter()
     {
         setOnClickListener();
-        CTRecyclerAdapter adapter = new CTRecyclerAdapter(typeItems, listener);
+        adapter = new CTRecyclerAdapter(typeItems, listener);
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getApplicationContext());
         CTRecyclerView.setLayoutManager(layoutManager);
         CTRecyclerView.setItemAnimator(new DefaultItemAnimator());

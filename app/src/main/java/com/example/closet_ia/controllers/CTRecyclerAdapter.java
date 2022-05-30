@@ -18,13 +18,13 @@ import java.util.ArrayList;
 
 public class CTRecyclerAdapter extends RecyclerView.Adapter<CTRecyclerAdapter.CTViewHolder>
 {
-    private ArrayList<ClothingItem>  clothingItems;
+    private ArrayList<ClothingItem>  typeItems;
     private RecyclerViewClickListener listener;
     private ClothingItem item;
 
-    public CTRecyclerAdapter(ArrayList<ClothingItem> clothingItems, RecyclerViewClickListener listener)
+    public CTRecyclerAdapter(ArrayList<ClothingItem> typeItems, RecyclerViewClickListener listener)
     {
-        this.clothingItems = clothingItems;
+        this.typeItems = typeItems;
         this.listener = listener;
     }
 
@@ -61,9 +61,9 @@ public class CTRecyclerAdapter extends RecyclerView.Adapter<CTRecyclerAdapter.CT
     @Override
     public void onBindViewHolder(@NonNull CTRecyclerAdapter.CTViewHolder holder, int position)
     {
-        item = clothingItems.get(position);
+        item = typeItems.get(position);
         String name = item.getName();
-        String lastUsed = item.getLastUsed();
+        String lastUsed = "last used: " + item.getLastUsed();
         holder.nameTextView.setText(name);
         holder.lastUsedTextView.setText(lastUsed);
         ImageViewCompat.setImageTintList(holder.colorImageView, ColorStateList.valueOf(item.getColor()));
@@ -72,11 +72,17 @@ public class CTRecyclerAdapter extends RecyclerView.Adapter<CTRecyclerAdapter.CT
     @Override
     public int getItemCount()
     {
-        return clothingItems.size();
+        return typeItems.size();
     }
 
     public interface RecyclerViewClickListener
     {
         void onClick(View v, int position);
+    }
+
+    public void setFilteredList(ArrayList<ClothingItem> filteredList)
+    {
+        this.typeItems = filteredList;
+        notifyDataSetChanged();
     }
 }

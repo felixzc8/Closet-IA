@@ -29,6 +29,21 @@ public class ClothingItem implements Serializable
         this.timesWashed = 0;
     }
 
+    @Override
+    public String toString()
+    {
+        return "ClothingItem{" +
+                "ID='" + ID + '\'' +
+                ", type='" + type + '\'' +
+                ", name='" + name + '\'' +
+                ", color=" + color +
+                ", lastUsed='" + lastUsed + '\'' +
+                ", datePurchased='" + datePurchased + '\'' +
+                ", timesWashed=" + timesWashed +
+                ", inWash=" + inWash +
+                '}';
+    }
+
     public String getID()
     {
         return ID;

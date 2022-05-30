@@ -52,4 +52,16 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
+
+    <SearchView
+        android:id="@+id/CTSearchView"
+        android:layout_width="350dp"
+        android:layout_height="40dp"
+        android:background="@drawable/search_view_bg"
+        android:iconifiedByDefault="false"
+        android:queryHint="search"
+        app:layout_constraintBottom_toTopOf="@+id/CTRecyclerView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/clothingTypeTextView" />
 </androidx.constraintlayout.widget.ConstraintLayout>

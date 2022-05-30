@@ -70,6 +70,8 @@ public class WashingActivity extends AppCompatActivity
                 Intent intent = new Intent(getApplicationContext(), ClothingItemActivity.class);
                 intent.putExtra("clothing item", washingItems.get(position));
                 intent.putExtra("user", user);
+                intent.putExtra("item",washingItems.get(position));
+                intent.putExtra("origin", "WashingActivity");
                 startActivity(intent);
             }
         };

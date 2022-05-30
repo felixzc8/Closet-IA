@@ -15,6 +15,8 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
+import java.util.concurrent.CountDownLatch;
+
 public class ClosetActivity extends AppCompatActivity
 {
     FirebaseAuth mAuth;
@@ -56,6 +58,7 @@ public class ClosetActivity extends AppCompatActivity
             Toast.makeText(this, "error getting user", Toast.LENGTH_SHORT).show();
         }
     }
+
 
     public void goClothingTypeActivity(View v)
     {

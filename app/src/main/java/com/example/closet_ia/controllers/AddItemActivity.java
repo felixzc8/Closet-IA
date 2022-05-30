@@ -39,7 +39,7 @@ public class AddItemActivity extends AppCompatActivity
 
     String chosenDate = "";
     String type;
-    int chosenColor;
+    int chosenColor = 0;
     boolean choseColor = false;
 
 
@@ -133,7 +133,8 @@ public class AddItemActivity extends AppCompatActivity
 
     public void openColorPicker()
     {
-        AmbilWarnaDialog colorPicker = new AmbilWarnaDialog(this, 0x000000, new AmbilWarnaDialog.OnAmbilWarnaListener()
+        AmbilWarnaDialog colorPicker = new AmbilWarnaDialog(this,
+                chosenColor, new AmbilWarnaDialog.OnAmbilWarnaListener()
         {
             @Override
             public void onCancel(AmbilWarnaDialog dialog)
@@ -148,23 +149,24 @@ public class AddItemActivity extends AppCompatActivity
                 choseColor = true;
                 colorButton.setBackgroundDrawable(getResources().getDrawable(R.drawable.round_bg));
                 colorButton.setBackgroundColor(color);
-//                colorButton.setTextColor(color);
+                String hex = Integer.toHexString(color);
+                System.out.println(hex);
             }
         });
         colorPicker.show();
     }
 
-    public String convertColor(int color)
+    public int convertColor(int color)
     {
         String hex = Integer.toHexString(color);
         System.out.println(hex);
-        String newHex = hex.substring(2);
-        System.out.println(newHex);
-        return newHex;
+//        String newHex = hex.substring(2); //removes the alpha
+//        System.out.println(newHex);
+//        return newHex;
 
 //
-//        int parsedResult = (int) Long.parseLong(newHex, 16);
-//        return parsedResult;
+        int parsedResult = (int) Long.parseLong(hex, 16);
+        return parsedResult;
     }
 
     public void addItem(View v)
