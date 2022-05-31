@@ -163,8 +163,6 @@ public class AddItemActivity extends AppCompatActivity
 //        String newHex = hex.substring(2); //removes the alpha
 //        System.out.println(newHex);
 //        return newHex;
-
-//
         int parsedResult = (int) Long.parseLong(hex, 16);
         return parsedResult;
     }

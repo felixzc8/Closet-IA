@@ -12,7 +12,7 @@
             android:name=".controllers.WashingActivity"
             android:exported="false" />
         <activity
-            android:name=".controllers.MannequinActivity"
+            android:name=".controllers.ColorActivity"
             android:exported="false" />
         <activity
             android:name=".controllers.ClothingItemActivity"

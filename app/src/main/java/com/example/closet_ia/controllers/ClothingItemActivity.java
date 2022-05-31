@@ -12,6 +12,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.closet_ia.R;
 import com.example.closet_ia.objects.ClothingItem;
@@ -68,7 +69,6 @@ public class ClothingItemActivity extends AppCompatActivity
 
 
         getPosition();
-
         setDisplay();
     }
 
@@ -131,37 +131,6 @@ public class ClothingItemActivity extends AppCompatActivity
         return cRGB;
     }
 
-    public int findClosestColor(int color, ArrayList<Integer> colors)
-    {
-        Double closestDistance = findDistance(color, colors.get(0));
-        int closestColor = colors.get(0);
-
-        for (int c : colors)
-        {
-            if (findDistance(color, c) < closestDistance)
-            {
-                closestDistance = findDistance(color, c);
-                closestColor = c;
-            }
-        }
-
-        return closestColor;
-    }
-
-    public double findDistance(int color1, int color2)
-    {
-        int r1 = Color.red(color1);
-        int g1 = Color.green(color1);
-        int b1 = Color.blue(color1);
-
-        int r2 = Color.red(color2);
-        int g2 = Color.green(color2);
-        int b2 = Color.blue(color2);
-
-        double distance = Math.sqrt(Math.pow(r1 - r2, 2) + Math.pow(g1 - g2, 2) + Math.pow(b1 - b2, 2));
-
-        return distance;
-    }
 
     public void takeOutWash()
     {
@@ -232,22 +201,48 @@ public class ClothingItemActivity extends AppCompatActivity
         String date = df.format(d);
         System.out.println(date);
 
+        String msg = "Last used: " + date;
+        lastUsedTextView.setText(msg);
         item.setLastUsed(date);
         clothingItems.set(position, item);
         user.setClothingItems(clothingItems);
         updateFirestoreClothingItems();
     }
 
+    public void deleteItem(View v)
+    {
+        clothingItems.remove(position);
+        user.setClothingItems(clothingItems);
+        updateFirestoreClothingItems();
+
+        Toast.makeText(this, "item deleted", Toast.LENGTH_SHORT).show();
+
+        goClothingTypeActivity();
+    }
+
     public void back(View v)
     {
-        if (origin.equals("ClothingTypeActivity"))
+
+        switch (origin)
         {
-            goClothingTypeActivity();
+            case "ClothingTypeActivity":
+                goClothingTypeActivity();
+                break;
+            case "WashingActivity":
+                goWashingActivity();
+                break;
+            case "ColorActivity":
+                goColorActivity(v);
         }
-        else
-        {
-            goWashingActivity();
-        }
+    }
+
+    public void goColorActivity(View v)
+    {
+        Intent intent = new Intent(this, ColorActivity.class);
+        intent.putExtra("user", user);
+        intent.putExtra("item", item);
+        intent.putExtra("type", type);
+        startActivity(intent);
     }
 
     public void goWashingActivity()

@@ -97,17 +97,17 @@ public class ClothingTypeActivity extends AppCompatActivity
     private void filterList(String s)
     {
         ArrayList<ClothingItem> filteredList = new ArrayList<>();
-
-       for (ClothingItem item : typeItems)
-       {
-           if (item.getName().toLowerCase().contains(s.toLowerCase()))
-           {
-               filteredList.add(item);
-           }
-       }
+        for (ClothingItem item : typeItems)
+        {
+            if (item.getName().toLowerCase().contains(s.toLowerCase()))
+            {
+                filteredList.add(item);
+            }
+        }
 
        if (filteredList.isEmpty())
        {
+           adapter.setFilteredList(filteredList);
            Toast.makeText(this, "not found", Toast.LENGTH_SHORT).show();
        }
        else
@@ -126,7 +126,6 @@ public class ClothingTypeActivity extends AppCompatActivity
                 Intent intent = new Intent(getApplicationContext(), ClothingItemActivity.class);
                 intent.putExtra("item", typeItems.get(position));
                 intent.putExtra("user", user);
-                intent.putExtra("type", type);
                 intent.putExtra("origin", "ClothingTypeActivity");
                 startActivity(intent);
             }
