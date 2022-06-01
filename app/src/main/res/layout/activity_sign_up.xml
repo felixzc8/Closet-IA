@@ -140,7 +140,7 @@
         android:layout_height="150dp"
         android:background="@drawable/half_round_bg"
         android:backgroundTint="@color/brown"
-        app:layout_constraintEnd_toStartOf="@+id/datePurchasedInputLayout"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 

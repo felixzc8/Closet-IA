@@ -57,7 +57,7 @@ public class ColorActivity extends AppCompatActivity
         int g = Color.green(color);
         int b = Color.blue(color);
 
-        System.out.println("red: " + r + " green " + g+ " blue: " + b);
+        System.out.println("red: " + r + " green " + g + " blue: " + b);
 
         int cR = 255 - r;
         int cG = 255 - g;

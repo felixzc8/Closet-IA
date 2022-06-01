@@ -105,15 +105,15 @@ public class ClothingTypeActivity extends AppCompatActivity
             }
         }
 
-       if (filteredList.isEmpty())
-       {
-           adapter.setFilteredList(filteredList);
-           Toast.makeText(this, "not found", Toast.LENGTH_SHORT).show();
-       }
-       else
-       {
-           adapter.setFilteredList(filteredList);
-       }
+        if (filteredList.isEmpty())
+        {
+            adapter.setFilteredList(filteredList);
+            Toast.makeText(this, "not found", Toast.LENGTH_SHORT).show();
+        }
+        else
+        {
+            adapter.setFilteredList(filteredList);
+        }
     }
 
     public void setOnClickListener()

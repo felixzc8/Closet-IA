@@ -9,6 +9,8 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.SearchView;
+import android.widget.Toast;
 
 import com.example.closet_ia.R;
 import com.example.closet_ia.objects.ClothingItem;
@@ -25,7 +27,10 @@ public class WashingActivity extends AppCompatActivity
     ArrayList<ClothingItem> clothingItems;
     ArrayList<ClothingItem> washingItems;
     RecyclerView washRecyclerView;
+    WashRecyclerAdapter adapter;
     WashRecyclerAdapter.RecyclerViewClickListener listener;
+
+    SearchView washSearchView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -39,9 +44,12 @@ public class WashingActivity extends AppCompatActivity
         clothingItems = user.getClothingItems();
         washingItems = new ArrayList<>();
         washRecyclerView = findViewById(R.id.washRecyclerView);
+        washSearchView = findViewById(R.id.washSearchView);
+        washSearchView.clearFocus();
 
         setClothingItems();
         setAdapter();
+        setSearchView();
     }
 
     public void setClothingItems()
@@ -70,17 +78,58 @@ public class WashingActivity extends AppCompatActivity
                 Intent intent = new Intent(getApplicationContext(), ClothingItemActivity.class);
                 intent.putExtra("clothing item", washingItems.get(position));
                 intent.putExtra("user", user);
-                intent.putExtra("item",washingItems.get(position));
+                intent.putExtra("item", washingItems.get(position));
                 intent.putExtra("origin", "WashingActivity");
                 startActivity(intent);
             }
         };
     }
 
+    public void setSearchView()
+    {
+        washSearchView.setOnQueryTextListener(new SearchView.OnQueryTextListener()
+        {
+            @Override
+            public boolean onQueryTextSubmit(String s)
+            {
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String s)
+            {
+                filterList(s);
+                return true;
+            }
+        });
+    }
+
+    private void filterList(String s)
+    {
+        ArrayList<ClothingItem> filteredList = new ArrayList<>();
+        for (ClothingItem item : washingItems)
+        {
+            if (item.getName().toLowerCase().contains(s.toLowerCase()))
+            {
+                filteredList.add(item);
+            }
+        }
+
+        if (filteredList.isEmpty())
+        {
+            adapter.setFilteredList(filteredList);
+            Toast.makeText(this, "not found", Toast.LENGTH_SHORT).show();
+        }
+        else
+        {
+            adapter.setFilteredList(filteredList);
+        }
+    }
+
     public void setAdapter()
     {
         setOnClickListener();
-        WashRecyclerAdapter adapter = new WashRecyclerAdapter(washingItems, listener);
+        adapter = new WashRecyclerAdapter(washingItems, listener);
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getApplicationContext());
         washRecyclerView.setLayoutManager(layoutManager);
         washRecyclerView.setItemAnimator(new DefaultItemAnimator());

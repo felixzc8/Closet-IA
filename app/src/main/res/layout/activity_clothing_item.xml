@@ -51,7 +51,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/ic_baseline_circle_24"
-        app:tint="@color/black" />
+        app:tint="@color/black"
+        tools:ignore="SpeakableTextPresentCheck" />
 
     <TextView
         android:id="@+id/itemLastUsedTextView"
@@ -124,5 +125,14 @@
         app:srcCompat="@drawable/bin"
         app:tint="@color/design_default_color_error"
         tools:ignore="SpeakableTextPresentCheck" />
+
+    <ImageView
+        android:id="@+id/typeImageView"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="50dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/backButton4"
+        app:srcCompat="@drawable/ic_launcher_foreground" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

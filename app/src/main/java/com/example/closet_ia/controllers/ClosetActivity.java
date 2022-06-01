@@ -25,7 +25,6 @@ public class ClosetActivity extends AppCompatActivity
     User user;
     String type;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
@@ -52,7 +51,8 @@ public class ClosetActivity extends AppCompatActivity
                             Log.d("USER OBJECT", "user name: " + user.getName());
                         }
                     });
-        } catch (Exception e)
+        }
+        catch (Exception e)
         {
             e.printStackTrace();
             Toast.makeText(this, "error getting user", Toast.LENGTH_SHORT).show();
@@ -63,7 +63,7 @@ public class ClosetActivity extends AppCompatActivity
     public void goClothingTypeActivity(View v)
     {
         Intent intent = new Intent(this, ClothingTypeActivity.class);
-        switch(v.getId())
+        switch (v.getId())
         {
             case R.id.shirtsCL:
                 type = "shirts";
@@ -91,12 +91,14 @@ public class ClosetActivity extends AppCompatActivity
         intent.putExtra("user", user);
         startActivity(intent);
     }
+
     public void goWashingMachineActivity(View v)
     {
         Intent intent = new Intent(this, WashingActivity.class);
         intent.putExtra("user", user);
         startActivity(intent);
     }
+
     public void signOut(View v)
     {
         mAuth.signOut();

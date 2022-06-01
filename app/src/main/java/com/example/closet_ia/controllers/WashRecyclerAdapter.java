@@ -49,6 +49,7 @@ public class WashRecyclerAdapter extends RecyclerView.Adapter<WashRecyclerAdapte
             listener.onClick(view, getAdapterPosition());
         }
     }
+
     @NonNull
     @Override
     public WashRecyclerAdapter.WashViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType)
@@ -77,5 +78,11 @@ public class WashRecyclerAdapter extends RecyclerView.Adapter<WashRecyclerAdapte
     public interface RecyclerViewClickListener
     {
         void onClick(View v, int position);
+    }
+
+    public void setFilteredList(ArrayList<ClothingItem> filteredList)
+    {
+        this.washingItems = filteredList;
+        notifyDataSetChanged();
     }
 }

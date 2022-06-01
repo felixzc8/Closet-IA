@@ -18,7 +18,7 @@ import java.util.ArrayList;
 
 public class CTRecyclerAdapter extends RecyclerView.Adapter<CTRecyclerAdapter.CTViewHolder>
 {
-    private ArrayList<ClothingItem>  typeItems;
+    private ArrayList<ClothingItem> typeItems;
     private RecyclerViewClickListener listener;
     private ClothingItem item;
 
@@ -31,7 +31,7 @@ public class CTRecyclerAdapter extends RecyclerView.Adapter<CTRecyclerAdapter.CT
     public class CTViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener
     {
         private TextView nameTextView, lastUsedTextView;
-        private ImageView  colorImageView;
+        private ImageView colorImageView;
 
         public CTViewHolder(final View v)
         {

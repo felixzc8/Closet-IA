@@ -63,7 +63,8 @@ public class SignInActivity extends AppCompatActivity
                                 // Sign in success, update UI with the signed-in user's information
                                 Log.d("SIGN IN", "signInWithEmail:success");
                                 goClosetActivity();
-                            } else
+                            }
+                            else
                             {
                                 // If sign in fails, display a message to the user.
                                 Log.w("SIGN IN", "signInWithEmail:failure",
@@ -73,11 +74,13 @@ public class SignInActivity extends AppCompatActivity
                                         Toast.LENGTH_SHORT).show();
                             }
                         });
-            } catch (Exception e)
+            }
+            catch (Exception e)
             {
                 e.printStackTrace();
             }
-        } else
+        }
+        else
         {
             Toast.makeText(this, "fill in all fields", Toast.LENGTH_SHORT).show();
         }
@@ -87,6 +90,7 @@ public class SignInActivity extends AppCompatActivity
     {
         startActivity(new Intent(this, ClosetActivity.class));
     }
+
     public void goSignUpActivity(View v)
     {
         startActivity(new Intent(this, SignUpActivity.class));

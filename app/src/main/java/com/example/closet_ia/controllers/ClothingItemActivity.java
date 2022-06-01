@@ -39,7 +39,7 @@ public class ClothingItemActivity extends AppCompatActivity
     int position;
 
     TextView itemNameTextView, typeTextView, lastUsedTextView, datePurchasedTextView, timesWashedTextView;
-    ImageView itemColorImageView, washImageView, complementColorImageView;
+    ImageView itemColorImageView, washImageView, complementColorImageView, typeImageView;
 
 
     @Override
@@ -66,6 +66,7 @@ public class ClothingItemActivity extends AppCompatActivity
         itemColorImageView = findViewById(R.id.itemColorImageView);
         complementColorImageView = findViewById(R.id.complementColorImageView);
         washImageView = findViewById(R.id.washImageView);
+        typeImageView = findViewById(R.id.typeImageView);
 
 
         getPosition();
@@ -107,6 +108,30 @@ public class ClothingItemActivity extends AppCompatActivity
         ImageViewCompat.setImageTintList(complementColorImageView,
                 ColorStateList.valueOf(findComplementColor(item.getColor())));
 
+        switch (type)
+        {
+            case "shirts":
+                typeImageView.setImageResource(R.drawable.shirt);
+                break;
+            case "pants":
+                typeImageView.setImageResource(R.drawable.pants);
+                break;
+            case "shoes":
+                typeImageView.setImageResource(R.drawable.shoes);
+                break;
+            case "outerwear":
+                typeImageView.setImageResource(R.drawable.jacket);
+                break;
+            case "underwear & socks":
+                typeImageView.setImageResource(R.drawable.underwear);
+                break;
+            case "dresses":
+                typeImageView.setImageResource(R.drawable.dress);
+                break;
+            case "accessories":
+                typeImageView.setImageResource(R.drawable.accessories);
+                break;
+        }
     }
 
     public int findComplementColor(int color)
@@ -115,7 +140,7 @@ public class ClothingItemActivity extends AppCompatActivity
         int g = Color.green(color);
         int b = Color.blue(color);
 
-        System.out.println("red: " + r + " green " + g+ " blue: " + b);
+        System.out.println("red: " + r + " green " + g + " blue: " + b);
 
         int cR = 255 - r;
         int cG = 255 - g;
@@ -140,7 +165,7 @@ public class ClothingItemActivity extends AppCompatActivity
 
         updateFirestoreClothingItems();
 
-        Intent intent = new Intent(this,  ClothingTypeActivity.class);
+        Intent intent = new Intent(this, ClothingTypeActivity.class);
         intent.putExtra("user", user);
         intent.putExtra("type", type);
         startActivity(intent);
@@ -177,6 +202,7 @@ public class ClothingItemActivity extends AppCompatActivity
                         else
                         {
                             Log.w("CI", "Error updating document");
+                            System.out.println(task.getException());
                         }
                     }
                 });
@@ -252,6 +278,7 @@ public class ClothingItemActivity extends AppCompatActivity
         intent.putExtra("type", type);
         startActivity(intent);
     }
+
     public void goClothingTypeActivity()
     {
         Intent intent = new Intent(this, ClothingTypeActivity.class);
