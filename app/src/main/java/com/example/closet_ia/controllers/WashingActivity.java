@@ -115,15 +115,7 @@ public class WashingActivity extends AppCompatActivity
             }
         }
 
-        if (filteredList.isEmpty())
-        {
-            adapter.setFilteredList(filteredList);
-            Toast.makeText(this, "not found", Toast.LENGTH_SHORT).show();
-        }
-        else
-        {
-            adapter.setFilteredList(filteredList);
-        }
+        adapter.setFilteredList(filteredList);
     }
 
     public void setAdapter()

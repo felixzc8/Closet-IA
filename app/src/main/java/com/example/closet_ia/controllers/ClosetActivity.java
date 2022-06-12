@@ -86,6 +86,9 @@ public class ClosetActivity extends AppCompatActivity
             case R.id.accessoriesCL:
                 type = "accessories";
                 break;
+            case R.id.seeAllTextView:
+                type = "all";
+                break;
         }
         intent.putExtra("type", type);
         intent.putExtra("user", user);

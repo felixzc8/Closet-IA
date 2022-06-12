@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/black"
     tools:context=".controllers.ClothingTypeActivity">
 
     <TextView
@@ -55,7 +56,7 @@
 
     <SearchView
         android:id="@+id/CTSearchView"
-        android:layout_width="350dp"
+        android:layout_width="300dp"
         android:layout_height="40dp"
         android:background="@drawable/search_view_bg"
         android:iconifiedByDefault="false"
@@ -64,4 +65,14 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/clothingTypeTextView" />
+
+    <ImageView
+        android:id="@+id/colorWheelImageView"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginEnd="10dp"
+        app:layout_constraintBottom_toTopOf="@+id/CTRecyclerView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/clothingTypeTextView"
+        app:srcCompat="@drawable/color_wheel" />
 </androidx.constraintlayout.widget.ConstraintLayout>

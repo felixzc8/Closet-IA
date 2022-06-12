@@ -82,32 +82,6 @@ public class AddItemActivity extends AppCompatActivity
         final int month = calendar.get(Calendar.MONTH);
         final int day = calendar.get(Calendar.DAY_OF_MONTH);
 
-//        datePurchasedTextView.setOnClickListener(new View.OnClickListener()
-//        {
-//            @Override
-//            public void onClick(View view)
-//            {
-//                DatePickerDialog datePickerDialog = new DatePickerDialog(
-//                        AddItemActivity.this,
-//                        android.R.style.Theme_Holo_Light_Dialog_MinWidth,
-//                        setListener, year, month, day);
-//                datePickerDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-//                datePickerDialog.show();
-//            }
-//        });
-//
-//        setListener = new DatePickerDialog.OnDateSetListener()
-//        {
-//            @Override
-//            public void onDateSet(DatePicker datePicker, int i, int i1, int i2)
-//            {
-//                i1 += 1;
-//                String date = i2+"/"+i1+"/"+i;
-//                String msg = "date purchased: " + date;
-//                datePurchasedTextView.setText(msg);
-//            }
-//        };
-
         datePurchasedEditText.setOnClickListener(new View.OnClickListener()
         {
             @Override

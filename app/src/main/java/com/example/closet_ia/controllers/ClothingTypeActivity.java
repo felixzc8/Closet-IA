@@ -9,6 +9,7 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.SearchView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -19,6 +20,8 @@ import com.example.closet_ia.objects.User;
 
 import java.util.ArrayList;
 import java.util.UUID;
+
+import yuku.ambilwarna.AmbilWarnaDialog;
 
 public class ClothingTypeActivity extends AppCompatActivity
 {
@@ -31,6 +34,7 @@ public class ClothingTypeActivity extends AppCompatActivity
     CTRecyclerAdapter adapter;
 
     TextView clothingType;
+    ImageView colorWheelImageView;
     SearchView searchView;
 
     @Override
@@ -42,6 +46,9 @@ public class ClothingTypeActivity extends AppCompatActivity
         clothingItems = new ArrayList<>();
         typeItems = new ArrayList<>();
         CTRecyclerView = findViewById(R.id.CTRecyclerView);
+        clothingType = findViewById(R.id.clothingTypeTextView);
+        clothingType.setText(type);
+        colorWheelImageView = findViewById(R.id.colorWheelImageView);
         searchView = findViewById(R.id.CTSearchView);
         searchView.clearFocus();
 
@@ -49,9 +56,14 @@ public class ClothingTypeActivity extends AppCompatActivity
         type = intent.getStringExtra("type");
         user = (User) intent.getSerializableExtra("user");
 
-        clothingType = findViewById(R.id.clothingTypeTextView);
-        clothingType.setText(type);
-
+        colorWheelImageView.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View view)
+            {
+                openColorPicker();
+            }
+        });
         setItems();
         setAdapter();
         setSearchView();
@@ -61,11 +73,19 @@ public class ClothingTypeActivity extends AppCompatActivity
     {
         clothingItems = user.getClothingItems();
 
-        for (ClothingItem item : clothingItems)
+        if (type.equals("all"))
         {
-            if (item.getType().equals(type) && !item.isInWash())
+            typeItems = clothingItems;
+
+        }
+        else
+        {
+            for (ClothingItem item : clothingItems)
             {
-                typeItems.add(item);
+                if (item.getType().equals(type) && !item.isInWash())
+                {
+                    typeItems.add(item);
+                }
             }
         }
 
@@ -105,15 +125,32 @@ public class ClothingTypeActivity extends AppCompatActivity
             }
         }
 
-        if (filteredList.isEmpty())
-        {
-            adapter.setFilteredList(filteredList);
-            Toast.makeText(this, "not found", Toast.LENGTH_SHORT).show();
-        }
-        else
-        {
-            adapter.setFilteredList(filteredList);
-        }
+        adapter.setFilteredList(filteredList);
+    }
+
+    public void openColorPicker()
+    {
+//        AmbilWarnaDialog colorPicker = new AmbilWarnaDialog(this,
+//                chosenColor, new AmbilWarnaDialog.OnAmbilWarnaListener()
+//        {
+//            @Override
+//            public void onCancel(AmbilWarnaDialog dialog)
+//            {
+//            }
+//
+//            @Override
+//            public void onOk(AmbilWarnaDialog dialog, int color)
+//            {
+//                System.out.println(color);
+//                chosenColor = color;
+//                choseColor = true;
+//                colorButton.setBackgroundDrawable(getResources().getDrawable(R.drawable.round_bg));
+//                colorButton.setBackgroundColor(color);
+//                String hex = Integer.toHexString(color);
+//                System.out.println(hex);
+//            }
+//        });
+//        colorPicker.show();
     }
 
     public void setOnClickListener()
