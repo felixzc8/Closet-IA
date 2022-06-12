@@ -39,7 +39,7 @@ public class ClothingItemActivity extends AppCompatActivity
     int position;
 
     TextView itemNameTextView, typeTextView, lastUsedTextView, datePurchasedTextView, timesWashedTextView;
-    ImageView itemColorImageView, washImageView, complementColorImageView, typeImageView;
+    ImageView itemColorImageView, washImageView, typeImageView;
 
 
     @Override
@@ -64,7 +64,6 @@ public class ClothingItemActivity extends AppCompatActivity
         datePurchasedTextView = findViewById(R.id.itemDatePurchasedTextView);
         timesWashedTextView = findViewById(R.id.itemTimesWashedTextView);
         itemColorImageView = findViewById(R.id.itemColorImageView);
-        complementColorImageView = findViewById(R.id.complementColorImageView);
         washImageView = findViewById(R.id.washImageView);
         typeImageView = findViewById(R.id.typeImageView);
 
@@ -105,9 +104,6 @@ public class ClothingItemActivity extends AppCompatActivity
             washImageView.setImageResource(R.drawable.washing_machine);
         }
 
-        ImageViewCompat.setImageTintList(complementColorImageView,
-                ColorStateList.valueOf(findComplementColor(item.getColor())));
-
         switch (type)
         {
             case "shirts":
@@ -133,29 +129,6 @@ public class ClothingItemActivity extends AppCompatActivity
                 break;
         }
     }
-
-    public int findComplementColor(int color)
-    {
-        int r = Color.red(color);
-        int g = Color.green(color);
-        int b = Color.blue(color);
-
-        System.out.println("red: " + r + " green " + g + " blue: " + b);
-
-        int cR = 255 - r;
-        int cG = 255 - g;
-        int cB = 255 - b;
-
-        int cRGB = 0xff;
-        cRGB = (cRGB << 8) + cR;
-        cRGB = (cRGB << 8) + cG;
-        cRGB = (cRGB << 8) + cB;
-
-        System.out.println("red: " + cR + " green: " + cG + " blue: " + cB);
-
-        return cRGB;
-    }
-
 
     public void takeOutWash()
     {
