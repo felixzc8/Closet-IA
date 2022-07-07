@@ -27,6 +27,9 @@ import java.util.UUID;
 
 import yuku.ambilwarna.AmbilWarnaDialog;
 
+/**
+ *
+ */
 public class AddItemActivity extends AppCompatActivity
 {
     FirebaseFirestore firestore;
@@ -34,11 +37,11 @@ public class AddItemActivity extends AppCompatActivity
     User user;
 
     Button colorButton;
-    //    TextView datePurchasedTextView;
     EditText nameInputEditText, datePurchasedEditText;
 
     String chosenDate = "";
     String type;
+    String sortType;
     int chosenColor = 0;
     boolean choseColor = false;
 
@@ -55,7 +58,8 @@ public class AddItemActivity extends AppCompatActivity
 
         Intent intent = getIntent();
         user = (User) intent.getSerializableExtra("user");
-        type = intent.getStringExtra("type");
+        sortType = intent.getStringExtra("sortType");
+        type = sortType;
 
         nameInputEditText = findViewById(R.id.nameInputEditText);
         datePurchasedEditText = findViewById(R.id.datePurchasedEditText);
@@ -75,6 +79,9 @@ public class AddItemActivity extends AppCompatActivity
         });
     }
 
+    /**
+     * Allows users to choose a purchase date for their clothing item from a calendar
+     */
     public void choosePurchaseDate()
     {
         Calendar calendar = Calendar.getInstance();
@@ -105,6 +112,9 @@ public class AddItemActivity extends AppCompatActivity
         });
     }
 
+    /**
+     * Allows the user to choose a color for their clothing item from a color wheel
+     */
     public void openColorPicker()
     {
         AmbilWarnaDialog colorPicker = new AmbilWarnaDialog(this,
@@ -141,6 +151,12 @@ public class AddItemActivity extends AppCompatActivity
         return parsedResult;
     }
 
+    /**
+     * After the user inputs information about their new clothing item, they can add the item to
+     * their closet, which is stored on Firebase
+     *
+     * @param v button click
+     */
     public void addItem(View v)
     {
 
@@ -166,11 +182,15 @@ public class AddItemActivity extends AppCompatActivity
         }
     }
 
+    /**
+     * Goes to ClothingTypeActivity and sends the user object and the type of the user
+     * @param v button click
+     */
     public void goClothingTypeActivity(View v)
     {
         Intent intent = new Intent(this, ClothingTypeActivity.class);
         intent.putExtra("user", user);
-        intent.putExtra("type", type);
+        intent.putExtra("sortType", sortType);
         startActivity(intent);
     }
 }

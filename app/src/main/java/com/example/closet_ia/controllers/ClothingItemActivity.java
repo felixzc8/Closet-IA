@@ -34,8 +34,8 @@ public class ClothingItemActivity extends AppCompatActivity
     User user;
     ArrayList<ClothingItem> clothingItems;
     ClothingItem item;
+    String sortType;
     String type;
-    String origin;
     int position;
 
     TextView itemNameTextView, typeTextView, lastUsedTextView, datePurchasedTextView, timesWashedTextView;
@@ -53,9 +53,8 @@ public class ClothingItemActivity extends AppCompatActivity
         Intent intent = getIntent();
         user = (User) intent.getSerializableExtra("user");
         item = (ClothingItem) intent.getSerializableExtra("item");
-        origin = intent.getStringExtra("origin");
+        sortType = intent.getStringExtra("sortType");
         clothingItems = user.getClothingItems();
-
         type = item.getType();
 
         itemNameTextView = findViewById(R.id.itemNameTextView);
@@ -67,11 +66,13 @@ public class ClothingItemActivity extends AppCompatActivity
         washImageView = findViewById(R.id.washImageView);
         typeImageView = findViewById(R.id.typeImageView);
 
-
         getPosition();
         setDisplay();
     }
 
+    /**
+     * Finds the index of the item within the list of clothing items
+     */
     public void getPosition()
     {
         for (int i = 0; i < clothingItems.size(); i++)
@@ -83,6 +84,9 @@ public class ClothingItemActivity extends AppCompatActivity
         }
     }
 
+    /**
+     * Sets the appropriate text messages and images on screen
+     */
     public void setDisplay()
     {
         itemNameTextView.setText(item.getName());
@@ -130,6 +134,10 @@ public class ClothingItemActivity extends AppCompatActivity
         }
     }
 
+    /**
+     * Sets the field 'InWash' of the current clothing item to false, updates Firebase, and then
+     * goes to ClothingTypeAcivitiy where the clothing item is now situated
+     */
     public void takeOutWash()
     {
         item.setInWash(false);
@@ -138,12 +146,13 @@ public class ClothingItemActivity extends AppCompatActivity
 
         updateFirestoreClothingItems();
 
-        Intent intent = new Intent(this, ClothingTypeActivity.class);
-        intent.putExtra("user", user);
-        intent.putExtra("type", type);
-        startActivity(intent);
+        goClothingTypeActivity();
     }
 
+    /**
+     * Sets the field 'InWash' of the current clothing item to true, updates firebase, and then
+     * goes to WashingActivity where the clothing item is now situated
+     */
     public void putInWash()
     {
         item.setInWash(true);
@@ -152,12 +161,12 @@ public class ClothingItemActivity extends AppCompatActivity
         user.setClothingItems(clothingItems);
         updateFirestoreClothingItems();
 
-        Intent intent = new Intent(this, WashingActivity.class);
-        intent.putExtra("user", user);
-        intent.putExtra("type", type);
-        startActivity(intent);
+        goClothingTypeActivity();
     }
 
+    /**
+     * Updates Firebase with an updated list of clothingItems
+     */
     public void updateFirestoreClothingItems()
     {
         firestore.collection("users")
@@ -181,6 +190,11 @@ public class ClothingItemActivity extends AppCompatActivity
                 });
     }
 
+    /**
+     * If the item's 'InWash' field is true, take the item out of the wash, else, put the item in
+     * the wash
+     * @param v button click
+     */
     public void washIconClicked(View v)
     {
         if (item.isInWash())
@@ -193,6 +207,10 @@ public class ClothingItemActivity extends AppCompatActivity
         }
     }
 
+    /**
+     * Sets the 'last used' field of the item to the current date
+     * @param v button click
+     */
     public void useItem(View v)
     {
         Date d = Calendar.getInstance().getTime();
@@ -208,6 +226,10 @@ public class ClothingItemActivity extends AppCompatActivity
         updateFirestoreClothingItems();
     }
 
+    /**
+     * Deletes the clothing item from the list of clothing items and updates Firebase
+     * @param v button click
+     */
     public void deleteItem(View v)
     {
         clothingItems.remove(position);
@@ -219,44 +241,36 @@ public class ClothingItemActivity extends AppCompatActivity
         goClothingTypeActivity();
     }
 
+    /**
+     * Goes back to the previous activity
+     * @param v button click
+     */
     public void back(View v)
     {
-
-        switch (origin)
-        {
-            case "ClothingTypeActivity":
-                goClothingTypeActivity();
-                break;
-            case "WashingActivity":
-                goWashingActivity();
-                break;
-            case "ColorActivity":
-                goColorActivity(v);
-        }
+        goClothingTypeActivity();
     }
 
+    /**
+     * Goes to ColorActivity
+     * @param v button click
+     */
     public void goColorActivity(View v)
     {
         Intent intent = new Intent(this, ColorActivity.class);
         intent.putExtra("user", user);
         intent.putExtra("item", item);
-        intent.putExtra("type", type);
+        intent.putExtra("sortType", type);
         startActivity(intent);
     }
 
-    public void goWashingActivity()
-    {
-        Intent intent = new Intent(this, WashingActivity.class);
-        intent.putExtra("user", user);
-        intent.putExtra("type", type);
-        startActivity(intent);
-    }
-
+    /**
+     * Goes to ClothingTypeActivity
+     */
     public void goClothingTypeActivity()
     {
         Intent intent = new Intent(this, ClothingTypeActivity.class);
         intent.putExtra("user", user);
-        intent.putExtra("type", type);
+        intent.putExtra("sortType", sortType);
         startActivity(intent);
     }
 }

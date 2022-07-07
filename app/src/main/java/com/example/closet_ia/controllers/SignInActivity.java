@@ -45,11 +45,15 @@ public class SignInActivity extends AppCompatActivity
         passwordInput = findViewById(R.id.passwordInputEditTextSI);
     }
 
+    /**
+     * Checks that all input fields are valid, then signs the user in with their email and password,
+     * if successful, brings user to ClosetActivity
+     * @param v button click
+     */
     public void signIn(View v)
     {
         String email = emailInput.getText().toString();
         String password = passwordInput.getText().toString();
-        System.out.println(String.format("Log In - Email: %s, Password: %s", email, password));
 
         if (!email.equals("") && !password.equals(""))
         {
@@ -86,11 +90,18 @@ public class SignInActivity extends AppCompatActivity
         }
     }
 
+    /**
+     * Brings user to ClosetActivity
+     */
     public void goClosetActivity()
     {
         startActivity(new Intent(this, ClosetActivity.class));
     }
 
+    /**
+     * Goes to Sign Up Activity
+     * @param v button click
+     */
     public void goSignUpActivity(View v)
     {
         startActivity(new Intent(this, SignUpActivity.class));

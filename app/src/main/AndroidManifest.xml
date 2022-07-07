@@ -9,12 +9,6 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.ClosetIA">
         <activity
-            android:name=".AllItemsActivity"
-            android:exported="false" />
-        <activity
-            android:name=".controllers.WashingActivity"
-            android:exported="false" />
-        <activity
             android:name=".controllers.ColorActivity"
             android:exported="false" />
         <activity

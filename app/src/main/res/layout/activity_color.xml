@@ -15,7 +15,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/ic_baseline_arrow_back_ios_24"
-        app:tint="@color/teal"
+        app:tint="@color/moss"
         tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck" />
 
     <ImageView
@@ -35,6 +35,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="50dp"
         android:text="Color Studio"
+        android:textColor="@color/watermelon"
         android:textSize="48sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -77,4 +78,92 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView3" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/CL4"
+        android:layout_width="300dp"
+        android:layout_height="50dp"
+        android:layout_marginBottom="200dp"
+        android:background="@drawable/watermelon_to_pink"
+        android:onClick="setColor"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:ignore="SpeakableTextPresentCheck">
+
+        <ImageView
+            android:id="@+id/CL4IV"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/CL3"
+        android:layout_width="300dp"
+        android:layout_height="50dp"
+        android:layout_marginBottom="2dp"
+        android:background="@drawable/watermelon_to_pink"
+        android:onClick="setColor"
+        app:layout_constraintBottom_toTopOf="@+id/CL4"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:ignore="SpeakableTextPresentCheck">
+
+        <ImageView
+            android:id="@+id/CL3IV"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/CL2"
+        android:layout_width="300dp"
+        android:layout_height="50dp"
+        android:layout_marginBottom="2dp"
+        android:background="@drawable/watermelon_to_pink"
+        android:onClick="setColor"
+        app:layout_constraintBottom_toTopOf="@+id/CL3"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:ignore="SpeakableTextPresentCheck">
+
+        <ImageView
+            android:id="@+id/CL2IV"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/CL1"
+        android:layout_width="300dp"
+        android:layout_height="50dp"
+        android:layout_marginBottom="2dp"
+        android:background="@drawable/watermelon_to_pink"
+        android:onClick="setColor"
+        app:layout_constraintBottom_toTopOf="@+id/CL2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:ignore="SpeakableTextPresentCheck">
+
+        <ImageView
+            android:id="@+id/CL1IV"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

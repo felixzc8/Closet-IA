@@ -16,7 +16,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/ic_baseline_arrow_back_ios_24"
-        app:tint="@color/teal"
+        app:tint="@color/moss"
         tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck" />
 
     <TextView
@@ -26,6 +26,7 @@
         android:layout_marginTop="40dp"
         android:gravity="center"
         android:text="name"
+        android:textColor="@color/watermelon"
         android:textSize="40sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -43,14 +44,14 @@
 
     <ImageView
         android:id="@+id/itemColorImageView"
-        android:layout_width="50dp"
+        android:layout_width="300dp"
         android:layout_height="50dp"
-        android:layout_marginTop="40dp"
-        android:layout_marginEnd="40dp"
+        android:layout_marginTop="10dp"
         android:onClick="goColorActivity"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/ic_baseline_circle_24"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/typeImageView"
+        app:srcCompat="@drawable/half_round"
         app:tint="@color/black"
         tools:ignore="SpeakableTextPresentCheck" />
 
@@ -91,7 +92,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:srcCompat="@drawable/laundry_basket"
-        app:tint="@color/teal"
+        app:tint="@color/moss"
         tools:ignore="SpeakableTextPresentCheck" />
 
     <Button
@@ -118,11 +119,24 @@
 
     <ImageView
         android:id="@+id/typeImageView"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:layout_marginTop="50dp"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/backButton4"
         app:srcCompat="@drawable/ic_launcher_foreground" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Color Studio"
+        android:textColor="@color/white"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="@+id/itemColorImageView"
+        app:layout_constraintEnd_toEndOf="@+id/itemColorImageView"
+        app:layout_constraintStart_toStartOf="@+id/itemColorImageView"
+        app:layout_constraintTop_toTopOf="@+id/itemColorImageView" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

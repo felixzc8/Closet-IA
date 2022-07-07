@@ -23,7 +23,7 @@ public class ClosetActivity extends AppCompatActivity
     FirebaseFirestore firestore;
     FirebaseUser mUser;
     User user;
-    String type;
+    String sortType;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -37,6 +37,10 @@ public class ClosetActivity extends AppCompatActivity
         getUser();
     }
 
+    /**
+     * Information about the current user and the user's clothes are collected from Firebase
+     *
+     */
     public void getUser()
     {
         try
@@ -60,48 +64,54 @@ public class ClosetActivity extends AppCompatActivity
     }
 
 
+    /**
+     * This function determines which of the buttons were clicked, then sends the user to
+     * ClothingTypeActivity with the correct information
+     *
+     * @param v on user clicking one of the clothing type icons
+     */
     public void goClothingTypeActivity(View v)
     {
         Intent intent = new Intent(this, ClothingTypeActivity.class);
         switch (v.getId())
         {
             case R.id.shirtsCL:
-                type = "shirts";
+                sortType = "shirts";
                 break;
             case R.id.pantsCL:
-                type = "pants";
+                sortType = "pants";
                 break;
             case R.id.shoesCL:
-                type = "shoes";
+                sortType = "shoes";
                 break;
             case R.id.outerwearCL:
-                type = "outerwear";
+                sortType = "outerwear";
                 break;
             case R.id.underwearAndSocksCL:
-                type = "underwear & socks";
+                sortType = "underwear & socks";
                 break;
             case R.id.dressesCL:
-                type = "dresses";
+                sortType = "dresses";
                 break;
             case R.id.accessoriesCL:
-                type = "accessories";
+                sortType = "accessories";
                 break;
-            case R.id.seeAllTextView:
-                type = "all";
+            case R.id.seeAllCL:
+                sortType = "all";
+                break;
+            case R.id.washingMachineImageView:
+                sortType = "Wash";
                 break;
         }
-        intent.putExtra("type", type);
         intent.putExtra("user", user);
+        intent.putExtra("sortType", sortType);
         startActivity(intent);
     }
 
-    public void goWashingMachineActivity(View v)
-    {
-        Intent intent = new Intent(this, WashingActivity.class);
-        intent.putExtra("user", user);
-        startActivity(intent);
-    }
-
+    /**
+     * Signs the user out of Firebase and returns the user to the sign in page
+     * @param v button click
+     */
     public void signOut(View v)
     {
         mAuth.signOut();

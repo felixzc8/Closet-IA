@@ -37,12 +37,16 @@ public class SignUpActivity extends AppCompatActivity
         passwordInput = findViewById(R.id.passwordInputEditTextSU);
     }
 
+    /**
+     * Checks that all input fields are valid, then signs up a new user to Firebase with their email
+     * and password, the user's name is stored in Firebase. Then, the user is sent to ClosetActivity
+     * @param v button click
+     */
     public void signUp(View v)
     {
         String name = nameInput.getText().toString();
         String email = emailInput.getText().toString();
         String password = passwordInput.getText().toString();
-        System.out.println(String.format("Sign Up - Email: %s, Password: %s", email, password));
 
         if (!name.equals("") && !email.equals("") && !password.equals(""))
         {
@@ -82,11 +86,18 @@ public class SignUpActivity extends AppCompatActivity
         }
     }
 
+    /**
+     * Goes to ClosetActivity
+     */
     public void goClosetActivity()
     {
         startActivity(new Intent(this, ClosetActivity.class));
     }
 
+    /**
+     * Sends the user to SignInActivity
+     * @param v button click
+     */
     public void goSignInActivity(View v)
     {
         startActivity(new Intent(this, SignInActivity.class));

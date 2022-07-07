@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/black"
+    android:background="@color/white"
     tools:context=".controllers.SignInActivity">
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -12,7 +12,7 @@
         android:layout_width="match_parent"
         android:layout_height="150dp"
         android:background="@drawable/half_round_bg"
-        android:backgroundTint="@color/brown"
+        android:backgroundTint="@color/pink"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
@@ -37,22 +37,22 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="100dp"
         android:hint="email"
-        android:textColorHint="@color/teal"
-        app:boxStrokeColor="@color/brown"
+        android:textColorHint="@color/moss"
+        app:boxStrokeColor="@color/pink"
         app:endIconMode="clear_text"
-        app:endIconTint="@color/teal"
-        app:hintTextColor="@color/teal"
+        app:endIconTint="@color/moss"
+        app:hintTextColor="@color/moss"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/constraintLayout8"
         app:startIconDrawable="@drawable/ic_baseline_email_24"
-        app:startIconTint="@color/teal">
+        app:startIconTint="@color/moss">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/nameInputEditText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textColor="@color/teal"
+            android:textColor="@color/moss"
             android:textColorHint="#757575" />
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -63,27 +63,27 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="40dp"
         android:hint="password"
-        android:textColorHint="@color/teal"
-        app:boxStrokeColor="@color/brown"
+        android:textColorHint="@color/moss"
+        app:boxStrokeColor="@color/pink"
         app:counterEnabled="true"
-        app:counterTextColor="@color/teal"
+        app:counterTextColor="@color/moss"
         app:endIconMode="password_toggle"
-        app:endIconTint="@color/teal"
+        app:endIconTint="@color/moss"
         app:helperText="min 6 characters"
-        app:helperTextTextColor="@color/teal"
-        app:hintTextColor="@color/teal"
+        app:helperTextTextColor="@color/moss"
+        app:hintTextColor="@color/moss"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/nameInputTIL"
         app:startIconDrawable="@drawable/ic_baseline_lock_24"
-        app:startIconTint="@color/teal">
+        app:startIconTint="@color/moss">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/passwordInputEditTextSI"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="textPassword"
-            android:textColor="@color/teal"
+            android:textColor="@color/moss"
             android:textColorHint="#757575" />
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -111,7 +111,7 @@
             android:layout_marginStart="2dp"
             android:onClick="goSignUpActivity"
             android:text="Sign up"
-            android:textColor="@color/teal"
+            android:textColor="@color/moss"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/promptTextView"
             app:layout_constraintTop_toTopOf="parent"
@@ -124,7 +124,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="40dp"
         android:background="@drawable/round_bg"
-        android:backgroundTint="@color/teal"
+        android:backgroundTint="@color/moss"
         android:onClick="signIn"
         android:text="sign in"
         android:textAllCaps="false"

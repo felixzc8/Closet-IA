@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/black"
+    android:background="@color/white"
     tools:context=".controllers.ClothingTypeActivity">
 
     <TextView
@@ -13,7 +13,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="50dp"
         android:text="Clothing Type"
-        android:textColor="@color/brown"
+        android:textColor="@color/watermelon"
         android:textSize="48sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
@@ -30,7 +30,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/ic_baseline_arrow_back_ios_24"
-        app:tint="@color/teal"
+        app:tint="@color/moss"
         tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck" />
 
     <androidx.recyclerview.widget.RecyclerView
@@ -45,18 +45,18 @@
         android:id="@+id/goAddItemButton"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="50dp"
+        android:layout_marginTop="20dp"
         android:background="@drawable/round_bg"
-        android:backgroundTint="@color/teal"
+        android:backgroundTint="@color/moss"
         android:onClick="goAddItemActivity"
         android:text="+"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/CTRecyclerView" />
 
     <SearchView
         android:id="@+id/CTSearchView"
-        android:layout_width="300dp"
+        android:layout_width="350dp"
         android:layout_height="40dp"
         android:background="@drawable/search_view_bg"
         android:iconifiedByDefault="false"
@@ -70,9 +70,11 @@
         android:id="@+id/colorWheelImageView"
         android:layout_width="40dp"
         android:layout_height="40dp"
+        android:layout_marginTop="10dp"
         android:layout_marginEnd="10dp"
-        app:layout_constraintBottom_toTopOf="@+id/CTRecyclerView"
+        android:onClick="openColorPicker"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/clothingTypeTextView"
-        app:srcCompat="@drawable/color_wheel" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/color_wheel"
+        tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
 </androidx.constraintlayout.widget.ConstraintLayout>

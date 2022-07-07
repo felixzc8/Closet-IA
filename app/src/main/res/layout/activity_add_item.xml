@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/black"
+    android:background="@color/white"
     tools:context=".controllers.AddItemActivity">
 
     <TextView
@@ -13,7 +13,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="50dp"
         android:text="Add Item"
-        android:textColor="@color/brown"
+        android:textColor="@color/watermelon"
         android:textSize="48sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
@@ -27,24 +27,24 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="40dp"
         android:hint="date purchased"
-        android:textColorHint="@color/teal"
-        app:boxStrokeColor="@color/brown"
+        android:textColorHint="@color/moss"
+        app:boxStrokeColor="@color/pink"
         app:endIconMode="clear_text"
-        app:endIconTint="@color/teal"
+        app:endIconTint="@color/moss"
         app:helperText="click to choose date"
-        app:helperTextTextColor="@color/teal"
-        app:hintTextColor="@color/teal"
+        app:helperTextTextColor="@color/moss"
+        app:hintTextColor="@color/moss"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/nameInputTIL"
         app:startIconDrawable="@drawable/ic_baseline_calendar_month_24"
-        app:startIconTint="@color/teal">
+        app:startIconTint="@color/moss">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/datePurchasedEditText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textColor="@color/teal"
+            android:textColor="@color/moss"
             android:textColorHint="#757575" />
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -55,22 +55,22 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="40dp"
         android:hint="name/description"
-        android:textColorHint="@color/teal"
-        app:boxStrokeColor="@color/brown"
+        android:textColorHint="@color/moss"
+        app:boxStrokeColor="@color/pink"
         app:endIconMode="clear_text"
-        app:endIconTint="@color/teal"
-        app:hintTextColor="@color/teal"
+        app:endIconTint="@color/moss"
+        app:hintTextColor="@color/moss"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/AddItemTextView"
         app:startIconDrawable="@drawable/ic_baseline_email_24"
-        app:startIconTint="@color/teal">
+        app:startIconTint="@color/moss">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/nameInputEditText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textColor="@color/teal"
+            android:textColor="@color/moss"
             android:textColorHint="#757575" />
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -84,7 +84,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/ic_baseline_arrow_back_ios_24"
-        app:tint="@color/teal"
+        app:tint="@color/moss"
         tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck" />
 
     <androidx.appcompat.widget.AppCompatButton
@@ -106,7 +106,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="100dp"
         android:background="@drawable/round_bg"
-        android:backgroundTint="@color/teal"
+        android:backgroundTint="@color/moss"
         android:onClick="addItem"
         android:text="+"
         app:layout_constraintEnd_toEndOf="parent"

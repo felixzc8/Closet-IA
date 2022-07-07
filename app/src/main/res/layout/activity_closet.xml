@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/black"
+    android:background="@color/white"
+    android:onClick="signOut"
     tools:context=".controllers.ClosetActivity">
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -14,7 +15,7 @@
         android:layout_marginTop="4dp"
         android:layout_marginEnd="16dp"
         android:background="@drawable/round_bg"
-        android:backgroundTint="@color/brown"
+        android:backgroundTint="@color/pink"
         android:onClick="goClothingTypeActivity"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/underwearAndSocksCL"
@@ -39,7 +40,7 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="40dp"
         android:background="@drawable/round_bg"
-        android:backgroundTint="@color/brown"
+        android:backgroundTint="@color/pink"
         android:onClick="goClothingTypeActivity"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/yourClosetTextView"
@@ -64,7 +65,7 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="4dp"
         android:background="@drawable/round_bg"
-        android:backgroundTint="@color/brown"
+        android:backgroundTint="@color/pink"
         android:onClick="goClothingTypeActivity"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/outerwearCL"
@@ -89,7 +90,7 @@
         android:layout_marginTop="4dp"
         android:layout_marginEnd="16dp"
         android:background="@drawable/round_bg"
-        android:backgroundTint="@color/brown"
+        android:backgroundTint="@color/pink"
         android:onClick="goClothingTypeActivity"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/shoesCL"
@@ -124,7 +125,7 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="4dp"
         android:background="@drawable/round_bg"
-        android:backgroundTint="@color/brown"
+        android:backgroundTint="@color/pink"
         android:onClick="goClothingTypeActivity"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/shoesCL"
@@ -149,7 +150,7 @@
         android:layout_marginTop="40dp"
         android:layout_marginEnd="16dp"
         android:background="@drawable/round_bg"
-        android:backgroundTint="@color/brown"
+        android:backgroundTint="@color/pink"
         android:onClick="goClothingTypeActivity"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/yourClosetTextView"
@@ -173,7 +174,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="50dp"
         android:text="Your Closet"
-        android:textColor="@color/brown"
+        android:textColor="@color/watermelon"
         android:textSize="48sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
@@ -186,7 +187,7 @@
         android:layout_height="100dp"
         android:layout_marginTop="4dp"
         android:background="@drawable/round_bg"
-        android:backgroundTint="@color/brown"
+        android:backgroundTint="@color/pink"
         android:onClick="goClothingTypeActivity"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -205,39 +206,52 @@
             app:tint="@color/white" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <Button
-        android:id="@+id/signOutButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:backgroundTint="@color/teal"
-        android:onClick="signOut"
-        android:text="sign out"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
-
     <ImageView
         android:id="@+id/washingMachineImageView"
-        android:layout_width="80dp"
-        android:layout_height="80dp"
-        android:layout_marginEnd="20dp"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginEnd="16dp"
         android:layout_marginBottom="20dp"
-        android:onClick="goWashingMachineActivity"
+        android:onClick="goClothingTypeActivity"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:srcCompat="@drawable/washing_machine"
+        app:tint="@color/cyan"
         tools:ignore="SpeakableTextPresentCheck" />
 
-    <TextView
-        android:id="@+id/seeAllTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="100dp"
-        android:onClick="goClothingTypeActivity"
-        android:text="see all"
-        android:textColor="@color/teal"
-        android:textSize="18sp"
+    <ImageView
+        android:id="@+id/imageView3"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginBottom="20dp"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:srcCompat="@drawable/logout"
+        app:tint="@color/moss" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/seeAllCL"
+        android:layout_width="360dp"
+        android:layout_height="30dp"
+        android:layout_marginTop="4dp"
+        android:background="@drawable/watermelon_to_pink"
+        android:onClick="goClothingTypeActivity"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        tools:ignore="TouchTargetSizeCheck" />
+        app:layout_constraintTop_toBottomOf="@+id/dressesCL">
+
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="all"
+            android:textColor="@color/white"
+            android:textSize="20sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
 </androidx.constraintlayout.widget.ConstraintLayout>
