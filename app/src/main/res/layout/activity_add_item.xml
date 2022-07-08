@@ -70,6 +70,7 @@
             android:id="@+id/nameInputEditText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:maxLength="20"
             android:textColor="@color/moss"
             android:textColorHint="#757575" />
     </com.google.android.material.textfield.TextInputLayout>

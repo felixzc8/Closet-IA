@@ -45,7 +45,7 @@
         android:id="@+id/complementIV"
         android:layout_width="50dp"
         android:layout_height="50dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="40dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/colorIV"
@@ -56,18 +56,18 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="item color"
-        app:layout_constraintBottom_toBottomOf="@+id/colorIV"
-        app:layout_constraintEnd_toStartOf="@+id/colorIV"
-        app:layout_constraintTop_toTopOf="@+id/colorIV" />
+        app:layout_constraintEnd_toEndOf="@+id/colorIV"
+        app:layout_constraintStart_toStartOf="@+id/colorIV"
+        app:layout_constraintTop_toBottomOf="@+id/colorIV" />
 
     <TextView
         android:id="@+id/textView5"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="complementary color"
-        app:layout_constraintBottom_toBottomOf="@+id/complementIV"
-        app:layout_constraintEnd_toStartOf="@+id/complementIV"
-        app:layout_constraintTop_toBottomOf="@+id/colorIV" />
+        app:layout_constraintEnd_toEndOf="@+id/complementIV"
+        app:layout_constraintStart_toStartOf="@+id/complementIV"
+        app:layout_constraintTop_toBottomOf="@+id/complementIV" />
 
     <TextView
         android:id="@+id/nameTV"
@@ -75,6 +75,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:text="item name"
+        android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView3" />
@@ -166,4 +167,91 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <ImageView
+        android:id="@+id/lightIV"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="50dp"
+        app:layout_constraintBottom_toTopOf="@+id/textView4"
+        app:layout_constraintStart_toEndOf="@+id/colorIV"
+        app:layout_constraintTop_toTopOf="@+id/colorIV"
+        app:srcCompat="@drawable/right_arrow" />
+
+    <ImageView
+        android:id="@+id/darkIV"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginEnd="50dp"
+        app:layout_constraintBottom_toBottomOf="@+id/colorIV"
+        app:layout_constraintEnd_toStartOf="@+id/colorIV"
+        app:layout_constraintTop_toTopOf="@+id/colorIV"
+        app:srcCompat="@drawable/left_arrow" />
+
+    <TextView
+        android:id="@+id/textView7"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="dark shade"
+        app:layout_constraintEnd_toEndOf="@+id/darkIV"
+        app:layout_constraintStart_toStartOf="@+id/darkIV"
+        app:layout_constraintTop_toBottomOf="@+id/darkIV" />
+
+    <TextView
+        android:id="@+id/textView8"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="light shade"
+        app:layout_constraintEnd_toEndOf="@+id/lightIV"
+        app:layout_constraintStart_toStartOf="@+id/lightIV"
+        app:layout_constraintTop_toBottomOf="@+id/lightIV" />
+
+    <ImageView
+        android:id="@+id/clear1"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_marginStart="10dp"
+        android:onClick="clearItem"
+        app:layout_constraintBottom_toTopOf="@+id/CL2"
+        app:layout_constraintStart_toEndOf="@+id/CL1"
+        app:layout_constraintTop_toTopOf="@+id/CL1"
+        app:srcCompat="@drawable/wrong"
+        tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
+
+    <ImageView
+        android:id="@+id/clear2"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_marginStart="10dp"
+        android:onClick="clearItem"
+        app:layout_constraintBottom_toTopOf="@+id/CL3"
+        app:layout_constraintStart_toEndOf="@+id/CL2"
+        app:layout_constraintTop_toTopOf="@+id/CL2"
+        app:srcCompat="@drawable/wrong"
+        tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck" />
+
+    <ImageView
+        android:id="@+id/clear3"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_marginStart="10dp"
+        android:onClick="clearItem"
+        app:layout_constraintBottom_toTopOf="@+id/CL4"
+        app:layout_constraintStart_toEndOf="@+id/CL3"
+        app:layout_constraintTop_toTopOf="@+id/CL3"
+        app:srcCompat="@drawable/wrong"
+        tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck" />
+
+    <ImageView
+        android:id="@+id/clear4"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_marginStart="10dp"
+        android:onClick="clearItem"
+        app:layout_constraintBottom_toBottomOf="@+id/CL4"
+        app:layout_constraintStart_toEndOf="@+id/CL4"
+        app:layout_constraintTop_toTopOf="@+id/CL4"
+        app:srcCompat="@drawable/wrong"
+        tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

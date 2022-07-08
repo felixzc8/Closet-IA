@@ -29,7 +29,7 @@ public class ColorActivity extends AppCompatActivity
     String sortType;
 
     TextView nameTV;
-    ImageView colorIV, complementIV, CL1IV, CL2IV, CL3IV, CL4IV;
+    ImageView colorIV, complementIV, lightIV, darkIV, CL1IV, CL2IV, CL3IV, CL4IV;
     ConstraintLayout CL1, CL2, CL3, CL4;
 
     public static Integer color1;
@@ -62,6 +62,8 @@ public class ColorActivity extends AppCompatActivity
         nameTV = findViewById(R.id.nameTV);
         colorIV = findViewById(R.id.colorIV);
         complementIV = findViewById(R.id.complementIV);
+        lightIV = findViewById(R.id.lightIV);
+        darkIV = findViewById(R.id.darkIV);
 
         CL1 = findViewById(R.id.CL1);
         CL2 = findViewById(R.id.CL2);
@@ -85,31 +87,101 @@ public class ColorActivity extends AppCompatActivity
         nameTV.setText(item.getName());
         ImageViewCompat.setImageTintList(colorIV, ColorStateList.valueOf(item.getColor()));
         ImageViewCompat.setImageTintList(complementIV, ColorStateList.valueOf(findComplementColor(item.getColor())));
+        ImageViewCompat.setImageTintList(lightIV, ColorStateList.valueOf(findLightShade(item.getColor())));
+        ImageViewCompat.setImageTintList(darkIV, ColorStateList.valueOf(findDarkShade(item.getColor())));
 
-        if(color1 != null)
+        if (color1 != null)
         {
             caBG1.setColorFilter(color1, PorterDuff.Mode.SRC_ATOP);
             CL1.setBackgroundDrawable(caBG1);
             setImage(type1, CL1IV);
         }
-        if(color2 != null)
+        if (color2 != null)
         {
             caBG2.setColorFilter(color2, PorterDuff.Mode.SRC_ATOP);
             CL2.setBackgroundDrawable(caBG2);
             setImage(type2, CL2IV);
         }
-        if(color3 != null)
+        if (color3 != null)
         {
             caBG3.setColorFilter(color3, PorterDuff.Mode.SRC_ATOP);
             CL3.setBackgroundDrawable(caBG3);
             setImage(type3, CL3IV);
         }
-        if(color4 != null)
+        if (color4 != null)
         {
             caBG4.setColorFilter(color4, PorterDuff.Mode.SRC_ATOP);
             CL4.setBackgroundDrawable(caBG4);
             setImage(type4, CL4IV);
         }
+    }
+
+    public int findLightShade(int color)
+    {
+        int r = Color.red(color);
+        int g = Color.green(color);
+        int b = Color.blue(color);
+
+        System.out.println("red: " + r + " green " + g + " blue: " + b);
+
+        int cR = r + 50;
+        int cG = g + 50;
+        int cB = b + 50;
+
+        if (cR > 255)
+        {
+            cR = 255;
+        }
+        if (cG > 255)
+        {
+            cG = 255;
+        }
+        if (cB > 255)
+        {
+            cB = 255;
+        }
+        int cRGB = 0xff;
+        cRGB = (cRGB << 8) + cR;
+        cRGB = (cRGB << 8) + cG;
+        cRGB = (cRGB << 8) + cB;
+
+        System.out.println("red: " + cR + " green: " + cG + " blue: " + cB);
+
+        return cRGB;
+    }
+
+    public int findDarkShade(int color)
+    {
+        int r = Color.red(color);
+        int g = Color.green(color);
+        int b = Color.blue(color);
+
+        System.out.println("red: " + r + " green " + g + " blue: " + b);
+
+        int cR = r - 50;
+        int cG = g - 50;
+        int cB = b - 50;
+
+        if (cR < 0)
+        {
+            cR = 0;
+        }
+        if (cG < 0)
+        {
+            cG = 0;
+        }
+        if (cB < 0)
+        {
+            cB = 0;
+        }
+        int cRGB = 0xff;
+        cRGB = (cRGB << 8) + cR;
+        cRGB = (cRGB << 8) + cG;
+        cRGB = (cRGB << 8) + cB;
+
+        System.out.println("red: " + cR + " green: " + cG + " blue: " + cB);
+
+        return cRGB;
     }
 
     public void setImage(String type, ImageView v)
@@ -165,7 +237,7 @@ public class ColorActivity extends AppCompatActivity
 
     public void setColor(View v)
     {
-        switch(v.getId())
+        switch (v.getId())
         {
             case R.id.CL1:
                 color1 = item.getColor();
@@ -195,6 +267,37 @@ public class ColorActivity extends AppCompatActivity
                 caBG4.setColorFilter(color4, PorterDuff.Mode.SRC_ATOP);
                 CL4.setBackgroundDrawable(caBG4);
                 setImage(type4, CL4IV);
+                break;
+        }
+    }
+
+    public void clearItem(View v)
+    {
+        switch(v.getId())
+        {
+            case R.id.clear1:
+                color1 = null;
+                type1 = null;
+                CL1.setBackgroundDrawable(getDrawable(R.drawable.watermelon_to_pink));
+                CL1IV.setImageDrawable(getDrawable(R.drawable.transparent));
+                break;
+            case R.id.clear2:
+                color2 = null;
+                type2 = null;
+                CL2.setBackgroundDrawable(getDrawable(R.drawable.watermelon_to_pink));
+                CL2IV.setImageDrawable(getDrawable(R.drawable.transparent));
+                break;
+            case R.id.clear3:
+                color3 = null;
+                type3 = null;
+                CL3.setBackgroundDrawable(getDrawable(R.drawable.watermelon_to_pink));
+                CL3IV.setImageDrawable(getDrawable(R.drawable.transparent));
+                break;
+            case R.id.clear4:
+                color4 = null;
+                type4 = null;
+                CL4.setBackgroundDrawable(getDrawable(R.drawable.watermelon_to_pink));
+                CL4IV.setImageDrawable(getDrawable(R.drawable.transparent));
                 break;
         }
     }
