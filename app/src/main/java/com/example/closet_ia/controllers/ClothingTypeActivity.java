@@ -29,6 +29,12 @@ import java.util.UUID;
 
 import yuku.ambilwarna.AmbilWarnaDialog;
 
+/**
+ * This activity contains a recyclerview of a specific type of clothes
+ * Clicking on the RecyclerView will bring the user to a page that contains more information on the
+ * item
+ * The user can search the items by the item name, or sort the clothes by similarity to a color
+ */
 public class ClothingTypeActivity extends AppCompatActivity
 {
     User user;
@@ -212,7 +218,6 @@ public class ClothingTypeActivity extends AppCompatActivity
     {
         int n = arr.size();
 
-        System.out.println(filteredList);
         // One by one move boundary of unsorted subarray
         for (int i = 0; i < n - 1; i++)
         {
@@ -228,7 +233,6 @@ public class ClothingTypeActivity extends AppCompatActivity
             arr.set(min_idx, arr.get(i));
             arr.set(i, temp);
         }
-        System.out.println(filteredList);
     }
 
     /**

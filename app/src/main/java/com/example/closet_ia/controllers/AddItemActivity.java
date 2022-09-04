@@ -28,7 +28,8 @@ import java.util.UUID;
 import yuku.ambilwarna.AmbilWarnaDialog;
 
 /**
- *
+ *This activity will allow the user to add items by inputting a name, a date purchased, and a color
+ * The item will be added to Firestore under the user
  */
 public class AddItemActivity extends AppCompatActivity
 {
@@ -138,17 +139,6 @@ public class AddItemActivity extends AppCompatActivity
             }
         });
         colorPicker.show();
-    }
-
-    public int convertColor(int color)
-    {
-        String hex = Integer.toHexString(color);
-        System.out.println(hex);
-//        String newHex = hex.substring(2); //removes the alpha
-//        System.out.println(newHex);
-//        return newHex;
-        int parsedResult = (int) Long.parseLong(hex, 16);
-        return parsedResult;
     }
 
     /**

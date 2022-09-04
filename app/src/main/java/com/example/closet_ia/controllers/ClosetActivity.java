@@ -17,6 +17,10 @@ import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.concurrent.CountDownLatch;
 
+/**
+ * This class is the main screen of the app
+ * The activity has a number of buttons that represent different tyeps of clothing
+ */
 public class ClosetActivity extends AppCompatActivity
 {
     FirebaseAuth mAuth;

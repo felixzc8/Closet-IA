@@ -20,6 +20,12 @@ import com.example.closet_ia.objects.User;
 
 import java.util.ArrayList;
 
+/**
+ * This activity has 6 slots that can be filled with the color of a selected clothing item,
+ * allowing the user to compare colors
+ * The screen also displays information on the item, such as its complementary color, a lighter
+ * shade of the color, and a darker shade of the color
+ */
 public class ColorActivity extends AppCompatActivity
 {
     User user;
@@ -29,22 +35,29 @@ public class ColorActivity extends AppCompatActivity
     String sortType;
 
     TextView nameTV;
-    ImageView colorIV, complementIV, lightIV, darkIV, CL1IV, CL2IV, CL3IV, CL4IV;
-    ConstraintLayout CL1, CL2, CL3, CL4;
+    ImageView colorIV, complementIV, lightIV, darkIV, CL1IV, CL2IV, CL3IV, CL4IV, CL5IV, CL6IV;
+    ConstraintLayout CL1, CL2, CL3, CL4, CL5, CL6;
 
     public static Integer color1;
     public static Integer color2;
     public static Integer color3;
     public static Integer color4;
+    public static Integer color5;
+    public static Integer color6;
+
     public static String type1;
     public static String type2;
     public static String type3;
     public static String type4;
+    public static String type5;
+    public static String type6;
 
     Drawable caBG1;
     Drawable caBG2;
     Drawable caBG3;
     Drawable caBG4;
+    Drawable caBG5;
+    Drawable caBG6;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -69,15 +82,22 @@ public class ColorActivity extends AppCompatActivity
         CL2 = findViewById(R.id.CL2);
         CL3 = findViewById(R.id.CL3);
         CL4 = findViewById(R.id.CL4);
+        CL5 = findViewById(R.id.CL5);
+        CL6 = findViewById(R.id.CL6);
+
         CL1IV = findViewById(R.id.CL1IV);
         CL2IV = findViewById(R.id.CL2IV);
         CL3IV = findViewById(R.id.CL3IV);
         CL4IV = findViewById(R.id.CL4IV);
+        CL5IV = findViewById(R.id.CL5IV);
+        CL6IV = findViewById(R.id.CL6IV);
 
         caBG1 = getResources().getDrawable(R.drawable.ca_bg1);
         caBG2 = getResources().getDrawable(R.drawable.ca_bg2);
         caBG3 = getResources().getDrawable(R.drawable.ca_bg3);
         caBG4 = getResources().getDrawable(R.drawable.ca_bg4);
+        caBG5 = getResources().getDrawable(R.drawable.ca_bg5);
+        caBG6 = getResources().getDrawable(R.drawable.ca_bg6);
 
         setDisplay();
     }
@@ -113,6 +133,18 @@ public class ColorActivity extends AppCompatActivity
             caBG4.setColorFilter(color4, PorterDuff.Mode.SRC_ATOP);
             CL4.setBackgroundDrawable(caBG4);
             setImage(type4, CL4IV);
+        }
+        if (color5 != null)
+        {
+            caBG5.setColorFilter(color5, PorterDuff.Mode.SRC_ATOP);
+            CL5.setBackgroundDrawable(caBG5);
+            setImage(type5, CL5IV);
+        }
+        if (color6 != null)
+        {
+            caBG6.setColorFilter(color6, PorterDuff.Mode.SRC_ATOP);
+            CL6.setBackgroundDrawable(caBG6);
+            setImage(type6, CL6IV);
         }
     }
 
@@ -235,7 +267,7 @@ public class ColorActivity extends AppCompatActivity
         return cRGB;
     }
 
-    public void setColor(View v)
+    public void setItem(View v)
     {
         switch (v.getId())
         {
@@ -268,6 +300,20 @@ public class ColorActivity extends AppCompatActivity
                 CL4.setBackgroundDrawable(caBG4);
                 setImage(type4, CL4IV);
                 break;
+            case R.id.CL5:
+                color5 = item.getColor();
+                type5 = item.getType();
+                caBG5.setColorFilter(color5, PorterDuff.Mode.SRC_ATOP);
+                CL5.setBackgroundDrawable(caBG5);
+                setImage(type5, CL5IV);
+                break;
+            case R.id.CL6:
+                color6 = item.getColor();
+                type6 = item.getType();
+                caBG6.setColorFilter(color6, PorterDuff.Mode.SRC_ATOP);
+                CL6.setBackgroundDrawable(caBG6);
+                setImage(type6, CL6IV);
+                break;
         }
     }
 
@@ -298,6 +344,18 @@ public class ColorActivity extends AppCompatActivity
                 type4 = null;
                 CL4.setBackgroundDrawable(getDrawable(R.drawable.watermelon_to_pink));
                 CL4IV.setImageDrawable(getDrawable(R.drawable.transparent));
+                break;
+            case R.id.clear5:
+                color5 = null;
+                type5 = null;
+                CL5.setBackgroundDrawable(getDrawable(R.drawable.watermelon_to_pink));
+                CL5IV.setImageDrawable(getDrawable(R.drawable.transparent));
+                break;
+            case R.id.clear6:
+                color6 = null;
+                type6 = null;
+                CL6.setBackgroundDrawable(getDrawable(R.drawable.watermelon_to_pink));
+                CL6IV.setImageDrawable(getDrawable(R.drawable.transparent));
                 break;
         }
     }

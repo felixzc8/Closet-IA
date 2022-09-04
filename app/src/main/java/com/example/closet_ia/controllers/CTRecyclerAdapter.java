@@ -21,6 +21,9 @@ import com.example.closet_ia.R;
 
 import java.util.ArrayList;
 
+/**
+ * This controls the RecyclerView
+ */
 public class CTRecyclerAdapter extends RecyclerView.Adapter<CTRecyclerAdapter.CTViewHolder>
 {
     private ArrayList<ClothingItem> typeItems;
@@ -28,6 +31,12 @@ public class CTRecyclerAdapter extends RecyclerView.Adapter<CTRecyclerAdapter.CT
     private ClothingItem item;
     private Context context;
 
+    /**
+     *
+     * @param typeItems the clothing items of a single type
+     * @param listener listens for a click from the user
+     * @param context tells the adapter which activity it came from
+     */
     public CTRecyclerAdapter(ArrayList<ClothingItem> typeItems, RecyclerViewClickListener listener, Context context)
     {
         this.typeItems = typeItems;
@@ -35,6 +44,9 @@ public class CTRecyclerAdapter extends RecyclerView.Adapter<CTRecyclerAdapter.CT
         this.context = context;
     }
 
+    /**
+     * Finds the elements in the row view
+     */
     public class CTViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener
     {
         private TextView nameTextView, lastUsedTextView;
@@ -68,6 +80,11 @@ public class CTRecyclerAdapter extends RecyclerView.Adapter<CTRecyclerAdapter.CT
         return new CTViewHolder(itemView);
     }
 
+    /**
+     * Sets the correct information in the RecyclerView
+     * @param holder the current slot of the RecyclerView
+     * @param position the position of the clothing item within the typeItems arraylist
+     */
     @Override
     public void onBindViewHolder(@NonNull CTRecyclerAdapter.CTViewHolder holder, int position)
     {

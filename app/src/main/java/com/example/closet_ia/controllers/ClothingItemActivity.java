@@ -27,6 +27,10 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
 
+/**
+ * This class contains information on one specific clothing item
+ * The user can 'use' the item, put the item in the wash, and delete the item
+ */
 public class ClothingItemActivity extends AppCompatActivity
 {
     FirebaseFirestore firestore;
@@ -161,7 +165,10 @@ public class ClothingItemActivity extends AppCompatActivity
         user.setClothingItems(clothingItems);
         updateFirestoreClothingItems();
 
-        goClothingTypeActivity();
+        Intent intent = new Intent(this, ClothingTypeActivity.class);
+        intent.putExtra("user", user);
+        intent.putExtra("sortType", "Wash");
+        startActivity(intent);
     }
 
     /**
